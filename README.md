@@ -21,6 +21,11 @@
     Decrementation des stocks si la commande est validee
     Rectifier un stock "Inventaire"
     Produit en rupture si le stock est à 0
+    Panier
+    Enregistrer adresse
+    FDP fixe à 1 seul transporteur
+    Enregistrer la commande
+    Page avec la liste des commandes à valider et à envoyer
 
 # Rapport de projet :
     Repartition du travail
