@@ -1,8 +1,8 @@
 # Projet PHP du groupe GG & HQ
-Répartition du travail
-Difficulé
-Les plus, les moins
+*RÃ©partition du travail
+*DifficulÃ©
+*Les plus, les moins
 
 #Sujet : 
-Gestion stock
-Site VOD (Séries, Jeux, film)
+*Gestion stock
+*Site VOD (SÃ©ries, Jeux, film)
