@@ -31,8 +31,8 @@ class Config
 
         /*
          * Define relative base path.
-         */ 
-        define('URL', 'http://localhost/projetphpgghq/'); 
+         */
+        define('DIR', '/');
 
         /*
          * Set default controller and method for legacy calls.
@@ -48,7 +48,7 @@ class Config
         /*
          * Set a default language.
          */
-        define('LANGUAGE_CODE', 'fr');
+        define('LANGUAGE_CODE', 'en');
 
         //database details ONLY NEEDED IF USING A DATABASE
 

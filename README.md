@@ -3,7 +3,6 @@
 #Sujet : 
     Gestion stock
     Site VOD (Series, Jeux, Film)
-    5 Categories, 5 univers differents, 5 types de fiches produits differentes
 
 #Categorie : 
     Series, films, jeux, musique, BDs
@@ -21,4 +20,3 @@
     Repartition du travail
     Difficule
     Les plus, les moins
-
