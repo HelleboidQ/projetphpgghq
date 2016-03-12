@@ -26,6 +26,7 @@
     FDP fixe à 1 seul transporteur
     Enregistrer la commande
     Page avec la liste des commandes à valider et à envoyer
+    Avertir l'utilisateur à chaque etape
 
 # Rapport de projet :
     Repartition du travail
