@@ -27,6 +27,14 @@
     Enregistrer la commande
     Page avec la liste des commandes à valider et à envoyer
     Avertir l'utilisateur à chaque étape
+    2 types d'utilisateurs
+    Page de profil
+    Page commandes passées
+    Accés à certaines partie du site (admin)
+    -Création produits + gestion
+    -Gestion des stocks
+    -Gestion des commandes
+    -Gestion des news
 
 # Rapport de projet :
     Repartition du travail
