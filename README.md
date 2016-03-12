@@ -1,5 +1,8 @@
 # Projet PHP du groupe GG & HQ
 
+    [![Dependency Status](https://www.versioneye.com/user/projects/56e45ef5df573d0043113a71/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56e45ef5df573d0043113a71)
+    ![Image Puissance](https://img.shields.io/badge/Envoie%20de%20puissance-ON-green.svg)
+
 #Sujet : 
     Gestion des stocks
     Site VOD (Series, Jeux, Film)
@@ -53,3 +56,6 @@
     Difficule
     Les plus, les moins
 
+
+# Lien classe mais qui sert à rien
+    http://helleboidq.github.io/projetphpgghq/
