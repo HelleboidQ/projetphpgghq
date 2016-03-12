@@ -6,7 +6,7 @@
     5 Categories, 5 univers differents, 5 types de fiches produits differentes
 
 #Categorie : 
-    Series, films, jeux, musique, BDs
+    Series, films, jeux, musique, BDs (Sous catégorie par style)
     Version numérique ou physique
     Gestion des stocks
     Gestion du paniers
@@ -14,8 +14,13 @@
     Gestion des comptes (Utilisateur, admin)
     Gestion des commentaires (Avis, notation)
     Galerie photo sur les fiches produits
+    Extrait sonore
+    Commentaire avec notation du produit
+    Ajout au panier
+    Coup de coeur du site sur certain produit
     Article en page d'acceuil (Gestion des news)
     Page contact et 404 
+    Easter egg accesible n'importe ou
 
     Pouvoir incrementer un stock "Arrivage de produits"
     Decrementation des stocks si la commande est validee
@@ -35,6 +40,13 @@
     -Gestion des stocks
     -Gestion des commandes
     -Gestion des news
+
+# Page d'accueil
+    Liste des 5 derniers articles 
+    Article : Auteur + date + photo news
+    Coup de coeur de la semaine
+    Posibilité de réagir à l'article
+    
 
 # Rapport de projet :
     Repartition du travail
