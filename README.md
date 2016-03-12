@@ -1,7 +1,7 @@
 # Projet PHP du groupe GG & HQ
 
 #Sujet : 
-    Gestion stock
+    Gestion des stocks
     Site VOD (Series, Jeux, Film)
     5 Categories, 5 univers differents, 5 types de fiches produits differentes
 
@@ -26,7 +26,7 @@
     FDP fixe à 1 seul transporteur
     Enregistrer la commande
     Page avec la liste des commandes à valider et à envoyer
-    Avertir l'utilisateur à chaque etape
+    Avertir l'utilisateur à chaque étape
 
 # Rapport de projet :
     Repartition du travail
