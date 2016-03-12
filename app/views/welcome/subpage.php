@@ -12,6 +12,6 @@ use Core\Language;
 
 <p><?php echo $data['welcome_message'] ?></p>
 
-<a class="btn btn-md btn-success" href="<?php echo $DIR; ?>">
+<a class="btn btn-md btn-success" href="<?php echo URL; ?>">
 	<?php echo Language::show('back_home', 'Welcome'); ?>
 </a>

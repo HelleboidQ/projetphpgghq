@@ -10,6 +10,6 @@ use Core\Language;
 	<h1><?php echo $data['title'] ?></h1>
 </div> 
 <p><?php echo $data['welcome_message'] ?></p> 
-<a class="btn btn-md btn-success" href="<?php echo $DIR; ?>subpage">
+<a class="btn btn-md btn-success" href="<?php echo URL; ?>subpage">
 	<?php echo Language::show('open_subpage', 'Welcome'); ?>
 </a>

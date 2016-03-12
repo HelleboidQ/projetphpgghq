@@ -90,7 +90,7 @@ class Config
         /*
          * Optional create a constant for the name of the site.
          */
-        define('SITETITLE', 'V2.2');
+        define('SITETITLE', 'GG & HQ');
 
         /*
          * Optionall set a site email address.
