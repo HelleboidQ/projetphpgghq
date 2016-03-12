@@ -15,7 +15,7 @@ use Core\Error;
 
 			<hr />
 
-			<h3>The page you were looking for could not be found</h3>
+			<h3>The page you were looking for could not be found.</h3>
 			<p>This could be the result of the page being removed, the name being changed or the page being temporarily unavailable</p>
 			<h3>Troubleshooting</h3>
 
