@@ -2,3 +2,7 @@
 Répartition du travail
 Difficulé
 Les plus, les moins
+
+#Sujet : 
+Gestion stock
+Site VOD (Séries, Jeux, film)
