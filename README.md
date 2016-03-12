@@ -17,7 +17,13 @@
     Article en page d'acceuil (Gestion des news)
     Page contact et 404 
 
+    Pouvoir incrementer un stock "Arrivage de produits"
+    Decrementation des stocks si la commande est validee
+    Rectifier un stock "Inventaire"
+    Produit en rupture si le stock est à 0
+
 # Rapport de projet :
     Repartition du travail
     Difficule
     Les plus, les moins
+
