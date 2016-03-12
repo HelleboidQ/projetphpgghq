@@ -14,7 +14,7 @@ use Helpers\Hooks;
 
 /* Define routes. */
 Router::any('', 'Controllers\Welcome@index');
-Router::any('subpage', 'Controllers\Welcome@subPage');
+Router::any('subpage', 'Controllers\Welcome@subPage'); 
 
 /* Module routes. */
 $hooks = Hooks::get();
@@ -24,7 +24,7 @@ $hooks->run('routes');
 Router::error('Core\Error@index');
 
 /* Turn on old style routing. */
-Router::$fallback = false;
+Router::$fallback = true;
 
 /* Execute matched routes. */
 Router::dispatch();

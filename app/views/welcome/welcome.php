@@ -1,15 +1,15 @@
 <?php
+
 /**
  * Sample layout.
  */
 use Core\Language;
-
 ?>
 
-<div class="page-header">
-	<h1><?php echo $data['title'] ?></h1>
-</div> 
+
+<h1><?php echo $data['title'] ?></h1>
+
 <p><?php echo $data['welcome_message'] ?></p> 
 <a class="btn btn-md btn-success" href="<?php echo URL; ?>subpage">
-	<?php echo Language::show('open_subpage', 'Welcome'); ?>
+    <?php echo Language::show('open_subpage', 'Welcome'); ?>
 </a>
