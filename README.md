@@ -1,8 +1,20 @@
 # Projet PHP du groupe GG & HQ
-    Répartition du travail
-    Difficulé
-    Les plus, les moins
 
 #Sujet : 
     Gestion stock
-    Site VOD (Séries, Jeux, film)
+    Site VOD (Series, Jeux, Film)
+
+#Categorie : 
+    Series, films, jeux, musique, BDs
+    Version num�rique ou physique
+    Gestion des stocks
+    Gestion des envois aux clients (Commandes)
+    Gestion des comptes (Utilisateur, admin)
+    Gestion des commentaires (Avis, notation)
+    Galerie photo sur les fiches produits
+    Page contact et 404 
+
+# Rapport de projet
+    Repartition du travail
+    Difficule
+    Les plus, les moins
