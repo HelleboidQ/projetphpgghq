@@ -20,7 +20,7 @@ $hooks = Hooks::get();
         //hook for plugging in meta tags
         $hooks->run('meta');
         ?>
-        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/Core/Config.php    ?></title>
+        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/Core/Config.php             ?></title>
 
         <!-- CSS -->
         <?php
@@ -57,8 +57,24 @@ $hooks = Hooks::get();
                         </li> 
                     </ul> 
                     <ul class="nav navbar-nav navbar-right"> 
-                        <li><a href="<?php echo URL . 'login'; ?>">Login</a></li>
-                        <li><a href="<?php echo URL . 'login/register'; ?>">Inscription</a></li>
+                        <?php
+                        if (\Helpers\Session::get('user_logged_in') == true) {
+                            ?>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mon compte<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="<?php echo URL; ?>login/compte">Mon profil</a>
+                                    </li> 
+                                    <li>
+                                        <a href="<?php echo URL; ?>login/logout">Logout</a>
+                                    </li>
+                                </ul>
+                            </li> 
+                        <?php } else { ?>
+                            <li><a href="<?php echo URL . 'login'; ?>">Login</a></li>
+                            <li><a href="<?php echo URL . 'login/register'; ?>">Inscription</a></li>
+                        <?php } ?>
                     </ul>
                 </div>
             </div>

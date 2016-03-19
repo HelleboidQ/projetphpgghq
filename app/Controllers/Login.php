@@ -23,16 +23,18 @@ use Core\View;
 class Login extends Controller {
 
     //put your code here
+    private $users;
 
     function __construct() {
         parent::__construct();
+        $this->users = new \Models\Users();
     }
 
     /**
      * Handles what happens when user moves to URL/index/index, which is the same like URL/index or in this
      * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
      */
-    public function index() { 
+    public function index() {
         View::renderTemplate('header');
         View::render('login/index');
         View::renderTemplate('footer');
@@ -41,6 +43,62 @@ class Login extends Controller {
     public function register() {
         View::renderTemplate('header');
         View::render('login/register');
+        View::renderTemplate('footer');
+    }
+
+    public function compte() {
+        View::renderTemplate('header');
+        View::render('login/compte');
+        View::renderTemplate('footer');
+    }
+
+    function newUsers() {
+
+        $pseudo = htmlentities($_POST['pseudo']);
+        $mail = htmlentities($_POST['mail']);
+        $pass = $_POST['pass'];
+
+        $postdata = array(
+            'pseudo' => $pseudo,
+            'mail' => $mail,
+            'pass' => $pass
+        );
+
+        if ($this->users->insertUsers($postdata)) {
+            View::renderTemplate('header');
+            View::render('login/login');
+            View::renderTemplate('footer');
+        } else {
+            View::renderTemplate('header');
+            View::render('login/register');
+            View::renderTemplate('footer');
+        }
+    }
+
+    function identification() {
+        $pseudo = htmlentities($_POST['pseudo']);
+        $pass = $_POST['pass'];
+
+        $postdata = array(
+            'pseudo' => $pseudo,
+            'pass' => $pass
+        );
+
+        if ($this->users->login($postdata)) {
+            View::renderTemplate('header');
+            View::render('login/compte');
+            View::renderTemplate('footer');
+        } else {
+            View::renderTemplate('header');
+            View::render('login/login');
+            View::renderTemplate('footer');
+        }
+    }
+
+    public function logout() {
+        \Helpers\Session::destroy();
+        View::renderTemplate('header');
+        View::render('login');
         View::renderTemplate('footer');
     }
 

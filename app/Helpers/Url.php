@@ -68,9 +68,9 @@ class Url
     public static function templatePath($custom = false)
     {
         if ($custom == true) {
-            return DIR.'app/templates/'.$custom.'/';
+            return URL.'app/templates/'.$custom.'/';
         } else {
-            return DIR.'app/templates/'.TEMPLATE.'/';
+            return URL.'app/templates/'.TEMPLATE.'/';
         }
     }
 
