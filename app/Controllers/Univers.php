@@ -6,10 +6,12 @@ use Core\Controller;
 use Core\View;
 
 class Univers extends Controller {
+    
+    private $_univers;
 
     function __construct() {
         parent::__construct();
-        $this->_univers = new \models\Univers();
+        $this->_univers = new \Models\Univers();
     }
 
     public function index() { 

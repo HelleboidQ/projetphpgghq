@@ -6,10 +6,11 @@ use Core\Controller;
 use Core\View;
 
 class Produits extends Controller {
+   private $_produits;
 
     function __construct() {
         parent::__construct();
-        $this->_produits = new \models\Produits();
+        $this->_produits = new \Models\Produits();
     }
 
     public function index() { 
