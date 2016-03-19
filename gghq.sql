@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.4
+-- version 4.2.12deb2+deb8u1build0.15.04.1
 -- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Sam 19 Mars 2016 à 12:02
--- Version du serveur :  5.6.15-log
--- Version de PHP :  5.4.24
+-- Client :  localhost
+-- Généré le :  Sam 19 Mars 2016 à 12:07
+-- Version du serveur :  5.6.28-0ubuntu0.15.04.1
+-- Version de PHP :  5.6.4-4ubuntu6.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,12 +27,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `commande` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `id_users` int(11) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `id_users` (`id_users`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -41,14 +39,11 @@ CREATE TABLE IF NOT EXISTS `commande` (
 --
 
 CREATE TABLE IF NOT EXISTS `commande_detail` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `id_commande` int(11) NOT NULL,
   `id_produit` int(11) NOT NULL,
-  `prix` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_commande` (`id_commande`),
-  KEY `id_produit` (`id_produit`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `prix` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -57,14 +52,11 @@ CREATE TABLE IF NOT EXISTS `commande_detail` (
 --
 
 CREATE TABLE IF NOT EXISTS `panier` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `id_users` int(11) NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `id_produit` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_produit` (`id_produit`),
-  KEY `id_users` (`id_users`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id_produit` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -73,13 +65,11 @@ CREATE TABLE IF NOT EXISTS `panier` (
 --
 
 CREATE TABLE IF NOT EXISTS `produits` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `univers_id` int(11) NOT NULL,
-  `prix` float(5,2) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `prix` (`prix`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `prix` float(5,2) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `produits`
@@ -96,10 +86,9 @@ INSERT INTO `produits` (`id`, `nom`, `univers_id`, `prix`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `univers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+`id` int(11) NOT NULL,
+  `nom` varchar(50) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `univers`
@@ -119,14 +108,20 @@ INSERT INTO `univers` (`id`, `nom`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `pseudo` varchar(100) NOT NULL,
   `mail` varchar(100) NOT NULL,
   `pass` varchar(60) NOT NULL,
-  `admin` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `pseudo` (`pseudo`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `admin` tinyint(1) DEFAULT '0'
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `users`
+--
+
+INSERT INTO `users` (`id`, `pseudo`, `mail`, `pass`, `admin`) VALUES
+(6, 'test6', 'test6', '$2y$10$w9U9R06jUhU4W/4p0IpEU.RNBaWhnvHc/sjuyJAWY4JeksXPLdJVK', 0),
+(7, 'admin', 'admin', '$2y$10$Yn3kc.DT4ASZHxMQVgGpiuuBJmuL09bUETn8Su5PgVza3.E.Zdgwi', 1);
 
 -- --------------------------------------------------------
 
@@ -135,17 +130,98 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 CREATE TABLE IF NOT EXISTS `users_adresse` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `id_users` int(11) NOT NULL,
   `adresse` varchar(150) NOT NULL,
   `facturation` tinyint(1) NOT NULL,
-  `livraison` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_users` (`id_users`),
-  KEY `facturation` (`facturation`),
-  KEY `livraison` (`livraison`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `livraison` tinyint(1) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `commande`
+--
+ALTER TABLE `commande`
+ ADD PRIMARY KEY (`id`), ADD KEY `id_users` (`id_users`);
+
+--
+-- Index pour la table `commande_detail`
+--
+ALTER TABLE `commande_detail`
+ ADD PRIMARY KEY (`id`), ADD KEY `id_commande` (`id_commande`), ADD KEY `id_produit` (`id_produit`);
+
+--
+-- Index pour la table `panier`
+--
+ALTER TABLE `panier`
+ ADD PRIMARY KEY (`id`), ADD KEY `id_produit` (`id_produit`), ADD KEY `id_users` (`id_users`);
+
+--
+-- Index pour la table `produits`
+--
+ALTER TABLE `produits`
+ ADD PRIMARY KEY (`id`), ADD KEY `prix` (`prix`);
+
+--
+-- Index pour la table `univers`
+--
+ALTER TABLE `univers`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `users`
+--
+ALTER TABLE `users`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `pseudo_2` (`pseudo`), ADD KEY `pseudo` (`pseudo`);
+
+--
+-- Index pour la table `users_adresse`
+--
+ALTER TABLE `users_adresse`
+ ADD PRIMARY KEY (`id`), ADD KEY `id_users` (`id_users`), ADD KEY `facturation` (`facturation`), ADD KEY `livraison` (`livraison`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `commande`
+--
+ALTER TABLE `commande`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `commande_detail`
+--
+ALTER TABLE `commande_detail`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `panier`
+--
+ALTER TABLE `panier`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `produits`
+--
+ALTER TABLE `produits`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT pour la table `univers`
+--
+ALTER TABLE `univers`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT pour la table `users_adresse`
+--
+ALTER TABLE `users_adresse`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
