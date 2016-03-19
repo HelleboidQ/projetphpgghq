@@ -4,7 +4,7 @@
 ![Image Puissance](https://img.shields.io/badge/Envoie%20de%20puissance-ON-green.svg)
 
 #Sujet : 
-    Gestion des stocks
+    Gestion des stockss
     Site VOD (Series, Jeux, Film)
     5 Categories, 5 univers differents, 5 types de fiches produits differentes
 
