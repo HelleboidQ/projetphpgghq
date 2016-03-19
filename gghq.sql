@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 19 Mars 2016 à 11:19
+-- Généré le :  Sam 19 Mars 2016 à 12:02
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.4.24
 
@@ -65,6 +65,29 @@ CREATE TABLE IF NOT EXISTS `panier` (
   KEY `id_produit` (`id_produit`),
   KEY `id_users` (`id_users`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `produits`
+--
+
+CREATE TABLE IF NOT EXISTS `produits` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) NOT NULL,
+  `univers_id` int(11) NOT NULL,
+  `prix` float(5,2) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `prix` (`prix`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `produits`
+--
+
+INSERT INTO `produits` (`id`, `nom`, `univers_id`, `prix`) VALUES
+(1, 'Test1', 1, 22.50),
+(2, 'Test2', 2, 11.32);
 
 -- --------------------------------------------------------
 
