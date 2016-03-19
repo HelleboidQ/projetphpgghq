@@ -56,6 +56,7 @@ $hooks = Hooks::get();
                             <a href="<?= URL; ?>">Accueil</a>
                         </li> 
                     </ul> 
+                    
                     <ul class="nav navbar-nav navbar-right"> 
                         <?php
                         if (\Helpers\Session::get('user_logged_in') == true) {
@@ -75,6 +76,11 @@ $hooks = Hooks::get();
                             <li><a href="<?php echo URL . 'login'; ?>">Login</a></li>
                             <li><a href="<?php echo URL . 'login/register'; ?>">Inscription</a></li>
                         <?php } ?>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="<?php echo URL . 'univers'; ?>">Univers</a></li>
+                        <li><a href="<?php echo URL . 'produits'; ?>">Produits</a></li>
                     </ul>
                 </div>
             </div>
