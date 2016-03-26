@@ -20,7 +20,7 @@ $hooks = Hooks::get();
         //hook for plugging in meta tags
         $hooks->run('meta');
         ?>
-        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/Core/Config.php             ?></title>
+        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/Core/Config.php               ?></title>
 
         <!-- CSS -->
         <?php
@@ -32,7 +32,11 @@ $hooks = Hooks::get();
         //hook for plugging in css
         $hooks->run('css');
         ?>
-
+        <!--
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+        -->
     </head>
     <body>
         <?php
@@ -56,7 +60,7 @@ $hooks = Hooks::get();
                             <a href="<?= URL; ?>">Accueil</a>
                         </li> 
                     </ul> 
-                    
+
                     <ul class="nav navbar-nav navbar-right"> 
                         <?php
                         if (\Helpers\Session::get('user_logged_in') == true) {

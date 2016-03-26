@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Sam 26 Mars 2016 à 09:14
+-- Généré le :  Sam 26 Mars 2016 à 09:33
 -- Version du serveur :  5.6.28-0ubuntu0.15.04.1
 -- Version de PHP :  5.6.4-4ubuntu6.4
 
@@ -125,7 +125,19 @@ CREATE TABLE IF NOT EXISTS `produits` (
   `id_auteur` int(11) NOT NULL,
   `type` varchar(255) NOT NULL,
   `lien_ws` varchar(255) DEFAULT NULL,
-  `stock` int(11) NOT NULL
+  `stock` int(11) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `similaire`
+--
+
+CREATE TABLE IF NOT EXISTS `similaire` (
+`id` int(11) NOT NULL,
+  `id_produit1` int(11) NOT NULL,
+  `id_produit2` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -240,6 +252,12 @@ ALTER TABLE `produits`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `similaire`
+--
+ALTER TABLE `similaire`
+ ADD PRIMARY KEY (`id`), ADD KEY `id_produit1` (`id_produit1`), ADD KEY `id_produit2` (`id_produit2`);
+
+--
 -- Index pour la table `univers`
 --
 ALTER TABLE `univers`
@@ -300,6 +318,11 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT pour la table `produits`
 --
 ALTER TABLE `produits`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `similaire`
+--
+ALTER TABLE `similaire`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `univers`
