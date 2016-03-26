@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Sam 26 Mars 2016 à 09:09
+-- Généré le :  Sam 26 Mars 2016 à 09:14
 -- Version du serveur :  5.6.28-0ubuntu0.15.04.1
 -- Version de PHP :  5.6.4-4ubuntu6.4
 
@@ -124,16 +124,9 @@ CREATE TABLE IF NOT EXISTS `produits` (
   `annee` int(11) NOT NULL,
   `id_auteur` int(11) NOT NULL,
   `type` varchar(255) NOT NULL,
+  `lien_ws` varchar(255) DEFAULT NULL,
   `stock` int(11) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `produits`
---
-
-INSERT INTO `produits` (`id`, `nom`, `id_univers`, `titre`, `annee`, `id_auteur`, `type`, `stock`) VALUES
-(1, '', 1, '', 0, 0, '0', 0),
-(2, '', 2, '', 0, 0, '0', 0);
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -168,16 +161,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `pseudo` varchar(100) NOT NULL,
   `mail` varchar(100) NOT NULL,
   `pass` varchar(60) NOT NULL,
-  `admin` tinyint(1) DEFAULT '0'
+  `admin` tinyint(2) DEFAULT '0',
+  `actif` tinyint(2) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `users`
 --
 
-INSERT INTO `users` (`id`, `pseudo`, `mail`, `pass`, `admin`) VALUES
-(6, 'test6', 'test6', '$2y$10$w9U9R06jUhU4W/4p0IpEU.RNBaWhnvHc/sjuyJAWY4JeksXPLdJVK', 0),
-(7, 'admin', 'admin', '$2y$10$Yn3kc.DT4ASZHxMQVgGpiuuBJmuL09bUETn8Su5PgVza3.E.Zdgwi', 1);
+INSERT INTO `users` (`id`, `pseudo`, `mail`, `pass`, `admin`, `actif`) VALUES
+(6, 'test6', 'test6', '$2y$10$w9U9R06jUhU4W/4p0IpEU.RNBaWhnvHc/sjuyJAWY4JeksXPLdJVK', 0, 1),
+(7, 'admin', 'admin', '$2y$10$Yn3kc.DT4ASZHxMQVgGpiuuBJmuL09bUETn8Su5PgVza3.E.Zdgwi', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -306,7 +300,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT pour la table `produits`
 --
 ALTER TABLE `produits`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `univers`
 --
