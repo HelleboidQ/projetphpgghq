@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Sam 19 Mars 2016 à 12:07
+-- Généré le :  Sam 26 Mars 2016 à 09:09
 -- Version du serveur :  5.6.28-0ubuntu0.15.04.1
 -- Version de PHP :  5.6.4-4ubuntu6.4
 
@@ -19,6 +19,32 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `gghq`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `auteur`
+--
+
+CREATE TABLE IF NOT EXISTS `auteur` (
+`id` int(11) NOT NULL,
+  `id_auteur` int(11) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `description` text
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `avis`
+--
+
+CREATE TABLE IF NOT EXISTS `avis` (
+`id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_produit` int(11) NOT NULL,
+  `note` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -48,6 +74,32 @@ CREATE TABLE IF NOT EXISTS `commande_detail` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `commentaire`
+--
+
+CREATE TABLE IF NOT EXISTS `commentaire` (
+`id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_produit` int(11) NOT NULL,
+  `news` tinyint(2) NOT NULL COMMENT '1:produit - 2:news'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `modele`
+--
+
+CREATE TABLE IF NOT EXISTS `modele` (
+`id` int(11) NOT NULL,
+  `nom` int(11) NOT NULL,
+  `id_produit` int(11) NOT NULL,
+  `prix` float(5,2) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `panier`
 --
 
@@ -67,17 +119,21 @@ CREATE TABLE IF NOT EXISTS `panier` (
 CREATE TABLE IF NOT EXISTS `produits` (
 `id` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
-  `univers_id` int(11) NOT NULL,
-  `prix` float(5,2) NOT NULL
+  `id_univers` int(11) NOT NULL,
+  `titre` varchar(255) NOT NULL,
+  `annee` int(11) NOT NULL,
+  `id_auteur` int(11) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `stock` int(11) NOT NULL
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `produits`
 --
 
-INSERT INTO `produits` (`id`, `nom`, `univers_id`, `prix`) VALUES
-(1, 'Test1', 1, 22.50),
-(2, 'Test2', 2, 11.32);
+INSERT INTO `produits` (`id`, `nom`, `id_univers`, `titre`, `annee`, `id_auteur`, `type`, `stock`) VALUES
+(1, '', 1, '', 0, 0, '0', 0),
+(2, '', 2, '', 0, 0, '0', 0);
 
 -- --------------------------------------------------------
 
@@ -142,6 +198,18 @@ CREATE TABLE IF NOT EXISTS `users_adresse` (
 --
 
 --
+-- Index pour la table `auteur`
+--
+ALTER TABLE `auteur`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `avis`
+--
+ALTER TABLE `avis`
+ ADD PRIMARY KEY (`id`), ADD KEY `id_user` (`id_user`), ADD KEY `id_produit` (`id_produit`);
+
+--
 -- Index pour la table `commande`
 --
 ALTER TABLE `commande`
@@ -154,6 +222,18 @@ ALTER TABLE `commande_detail`
  ADD PRIMARY KEY (`id`), ADD KEY `id_commande` (`id_commande`), ADD KEY `id_produit` (`id_produit`);
 
 --
+-- Index pour la table `commentaire`
+--
+ALTER TABLE `commentaire`
+ ADD PRIMARY KEY (`id`), ADD KEY `id_user` (`id_user`), ADD KEY `id_produit` (`id_produit`);
+
+--
+-- Index pour la table `modele`
+--
+ALTER TABLE `modele`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `panier`
 --
 ALTER TABLE `panier`
@@ -163,7 +243,7 @@ ALTER TABLE `panier`
 -- Index pour la table `produits`
 --
 ALTER TABLE `produits`
- ADD PRIMARY KEY (`id`), ADD KEY `prix` (`prix`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `univers`
@@ -188,6 +268,16 @@ ALTER TABLE `users_adresse`
 --
 
 --
+-- AUTO_INCREMENT pour la table `auteur`
+--
+ALTER TABLE `auteur`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `avis`
+--
+ALTER TABLE `avis`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
@@ -196,6 +286,16 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT pour la table `commande_detail`
 --
 ALTER TABLE `commande_detail`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `commentaire`
+--
+ALTER TABLE `commentaire`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `modele`
+--
+ALTER TABLE `modele`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `panier`
