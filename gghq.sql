@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Sam 26 Mars 2016 à 09:33
+-- Généré le :  Sam 26 Mars 2016 à 10:29
 -- Version du serveur :  5.6.28-0ubuntu0.15.04.1
 -- Version de PHP :  5.6.4-4ubuntu6.4
 
@@ -131,6 +131,21 @@ CREATE TABLE IF NOT EXISTS `produits` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `promo`
+--
+
+CREATE TABLE IF NOT EXISTS `promo` (
+`id` int(11) NOT NULL,
+  `nom` int(11) NOT NULL,
+  `pourcentage` int(11) NOT NULL,
+  `dateDebut` timestamp NOT NULL,
+  `dateFin` timestamp NOT NULL,
+  `id_promo` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `similaire`
 --
 
@@ -252,6 +267,12 @@ ALTER TABLE `produits`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `promo`
+--
+ALTER TABLE `promo`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `similaire`
 --
 ALTER TABLE `similaire`
@@ -318,6 +339,11 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT pour la table `produits`
 --
 ALTER TABLE `produits`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `promo`
+--
+ALTER TABLE `promo`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `similaire`
