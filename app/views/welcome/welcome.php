@@ -11,5 +11,9 @@ use Core\Language;
 
 <p><?php echo $data['welcome_message'] ?></p> 
 <a class="btn btn-md btn-success" href="<?php echo URL; ?>subpage">
-    <?php echo Language::show('open_subpage', 'Welcome'); ?>
+    <?php echo Language::show('open_subpage', 'Welcome'); ?>   
 </a>
+
+<pre>
+    <?php print_r($_SESSION); ?>
+</pre>
