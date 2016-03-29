@@ -20,7 +20,7 @@ $hooks = Hooks::get();
         //hook for plugging in meta tags
         $hooks->run('meta');
         ?>
-        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/Core/Config.php               ?></title>
+        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/Core/Config.php                   ?></title>
 
         <!-- CSS -->
         <?php
@@ -60,7 +60,28 @@ $hooks = Hooks::get();
                             <a href="<?= URL; ?>">Accueil</a>
                         </li> 
                     </ul> 
-
+                    <?php
+                    if (\Helpers\Session::get('admin') == "1") {
+                        ?>
+                        <ul class="nav navbar-nav navbar-right"> 
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin<span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">                              
+                                    <li>
+                                        <a href="<?php echo URL; ?>admin/news">News</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo URL; ?>admin/produit">Produits</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo URL; ?>admin/users">Utilisateur</a>
+                                    </li> 
+                                </ul>
+                            </li> 
+                        </ul>
+                        <?php
+                    }
+                    ?>
                     <ul class="nav navbar-nav navbar-right"> 
                         <?php
                         if (\Helpers\Session::get('user_logged_in') == true) {

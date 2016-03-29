@@ -33,7 +33,7 @@ class Users extends \Core\Model {
             \Helpers\Session::set('id', $users['0']->id);
             \Helpers\Session::set('pseudo', $users['0']->pseudo);
             \Helpers\Session::set('mail', $users['0']->mail);
-            \Helpers\Session::set('admin', $res_recup['0']->admin);
+            \Helpers\Session::set('admin', $users['0']->admin);
             return true;
         }
         return false;
