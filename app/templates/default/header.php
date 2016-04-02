@@ -59,7 +59,7 @@ $hooks = Hooks::get();
 
         <nav>
             <div class="nav-wrapper">
-                <a href="#!" class="brand-logo">&nbsp;<?php echo SITETITLE; ?></a>
+                <a href="<?php echo URL; ?>" class="brand-logo">&nbsp;<?php echo SITETITLE; ?></a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <?php
                     if (\Helpers\Session::get('admin') == "1") {
@@ -124,9 +124,19 @@ $hooks = Hooks::get();
                     </li>
                         <?php
                     }
+
                     if (\Helpers\Session::get('admin') == "1") {
                         ?>
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Admin<i class="material-icons right">arrow_drop_down</i></a></li> 
+                    <li class="divider"></li>
+                    <li>
+                        <a href="<?php echo URL; ?>admin/news">News</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo URL; ?>admin/produit">Produits</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo URL; ?>admin/users">Utilisateur</a>
+                    </li>
                         <?php
                     }
                     ?>
