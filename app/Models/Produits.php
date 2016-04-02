@@ -1,4 +1,6 @@
-<?php namespace models;
+<?php 
+namespace models;
+
 class Produits extends \Core\Model {
 	
 	function __construct(){
@@ -7,7 +9,10 @@ class Produits extends \Core\Model {
 
 	public function findAll()
 	{
-		return $this->db->select('SELECT p.id, p.nom AS nom_prod, prix, u.id, u.nom AS nom_univ FROM produits AS p INNER JOIN univers AS u ON `p`.`univers_id` = `u`.`id`');
+		return $this->db->select('SELECT p.* 
+                                          FROM produits p
+                                            JOIN univers u ON p.id_univers=u.id
+                                            JOIN auteur a ON a.id_auteur=p.id_auteur');
 	}
 
 	public function findByUnivers($univers_id)

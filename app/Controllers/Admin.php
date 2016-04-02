@@ -8,10 +8,14 @@ use Core\View;
 class Admin extends Controller {
 
     private $_user;
+    private $_produits;
+    private $_univers;
 
     function __construct() {
         parent::__construct();
         $this->_user = new \Models\Users();
+        $this->_produits = new \Models\Produits();
+        $this->_univers = new \Models\Univers();
     }
 
     public function news() {
@@ -26,13 +30,15 @@ class Admin extends Controller {
     }
 
     public function produit() {
-        //$listeProduits = $this->_produits->findByUnivers(2);
-        //$listeProduits = $this->_produits->findAll();
-        //$data['list'] = $listeProduits;
+        $listeProduits = $this->_produits->findAll();
+        $data['list'] = $listeProduits;
+
+        $listeUnivers = $this->_univers->findAll();
+        $data['univers'] = $listeUnivers;
+
 
         View::renderTemplate('header');
-        //View::render('produits/index',$data);
-        View::render('admin/produit');
+        View::render('admin/produit', $data);
         View::renderTemplate('footer');
     }
 

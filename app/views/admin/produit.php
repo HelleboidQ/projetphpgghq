@@ -1,8 +1,24 @@
-<?php
+<h2>Liste des produits</h2>
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+<button>Ajouter un produit</button>
 
+<table class="table table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prix</th>
+        <th>Univers</th>
+    </tr>
+    <?php
+    foreach ($data['list'] as $u) {
+        ?>
+        <tr>
+            <td><?= $u->id; ?></td>
+            <td><?= $u->nom_prod; ?></td>
+            <td><?= $u->prix; ?></td>
+            <td><?= $u->nom_univ; ?></td>
+        </tr>
+        <?php
+    }
+    ?>
+</table>
