@@ -30,8 +30,7 @@ $hooks = Hooks::get();
         ]);
 
         Assets::js([
-            URL . 'app/templates/default/js/jquery.js',
-            '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'
+            URL . 'app/templates/default/js/jquery.js' 
         ]);
 
         //hook for plugging in css
