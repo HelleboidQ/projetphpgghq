@@ -56,6 +56,10 @@ class Login extends Controller {
 
         $pseudo = htmlentities($_POST['pseudo']);
         $mail = htmlentities($_POST['mail']);
+        if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+            $_SESSION["feedback_negative"][] = "Mail non valide";
+            return false;
+        }
         $pass = $_POST['pass'];
 
         $postdata = array(
@@ -100,6 +104,10 @@ class Login extends Controller {
         View::renderTemplate('header');
         View::render('login');
         View::renderTemplate('footer');
+    }
+
+    public function modifier($id) {
+        
     }
 
 }

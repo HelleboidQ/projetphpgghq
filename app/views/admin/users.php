@@ -1,8 +1,27 @@
-<?php
+<label>Nom :</label>
+<input type="text" id="nom" >
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+<div id="reponse">
 
+</div>
+  
+<br />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#nom').change(function () {
+            nom = $('#nom').val();
+            $.ajax({
+                type: 'POST',
+                url: 'recherche_user',
+                data: {
+                    nom: nom
+                },
+                success: function (data) {
+                    $('#reponse').html(data);
+                }
+            });
+        });
+    });
+</script>

@@ -15,7 +15,7 @@
              <div class="form-group">
                 <label for="user_name" class="col-sm-2 control-label">Mail : </label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="mail" name="mail" required>
+                    <input type="mail" class="form-control" id="mail" name="mail" required>
                 </div>
             </div>
 

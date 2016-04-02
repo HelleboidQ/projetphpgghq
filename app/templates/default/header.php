@@ -20,13 +20,18 @@ $hooks = Hooks::get();
         //hook for plugging in meta tags
         $hooks->run('meta');
         ?>
-        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/Core/Config.php                   ?></title>
+        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/Core/Config.php                    ?></title>
 
         <!-- CSS -->
         <?php
         Assets::css([
             '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
             URL . 'app/templates/default/css/style.css',
+        ]);
+
+        Assets::js([
+            URL . 'app/templates/default/js/jquery.js',
+            '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'
         ]);
 
         //hook for plugging in css
