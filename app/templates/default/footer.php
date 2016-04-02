@@ -15,8 +15,8 @@ $hooks = Hooks::get();
 <!-- JS -->
 <?php
 Assets::js([
-    Url::templatePath().'js/jquery.js',
-    '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js',
+    Url::templatePath().'js/script.js',
+    '//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js',
 ]);
 
 //hook for plugging in javascript
