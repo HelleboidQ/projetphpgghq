@@ -9,10 +9,11 @@ class Produits extends \Core\Model {
 
 	public function findAll()
 	{
-		return $this->db->select('SELECT p.* 
+		return $this->db->select('SELECT p.*, u.nom as nomUnivers, m.prix, m.nom as nomModele
                                           FROM produits p
                                             JOIN univers u ON p.id_univers=u.id
-                                            JOIN auteur a ON a.id_auteur=p.id_auteur');
+                                            JOIN auteur a ON a.id_auteur=p.id_auteur
+                                            JOIN modele m ON m.id_produit=p.id');
 	}
 
 	public function findByUnivers($univers_id)

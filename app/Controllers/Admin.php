@@ -60,7 +60,7 @@ class Admin extends Controller {
         $personne = $this->_user->getUsersByName($name);
         if (sizeof($personne) != 0) {
             ?>
-            <table class="table">
+            <table class="highlight">
                 <thead>
                     <tr>
                         <th>Id</th>

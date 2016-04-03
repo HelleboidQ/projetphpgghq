@@ -102,7 +102,7 @@ class Login extends Controller {
     public function logout() {
         \Helpers\Session::destroy();
         View::renderTemplate('header');
-        View::render('login');
+        View::render('login/index');
         View::renderTemplate('footer');
     }
 
