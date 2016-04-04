@@ -16,6 +16,10 @@ class Users extends \Core\Model {
         return $this->db->select('SELECT * FROM users WHERE pseudo LIKE :pseudo', array(':pseudo' => $name."%"));
     }
 
+    public function getUsersById($id) {
+        return $this->db->select('SELECT * FROM users WHERE id = :id', array(':id'  => $id));
+    }
+
     public function insertUsers($postdata) {
         $pseudoExist = $this->db->select("SELECT * FROM users WHERE pseudo = :pseudo", array(':pseudo' => $postdata['pseudo']));
 
