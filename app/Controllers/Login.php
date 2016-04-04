@@ -94,7 +94,7 @@ class Login extends Controller {
             View::renderTemplate('footer');
         } else {
             View::renderTemplate('header');
-            View::render('login/login');
+            View::render('login/index');
             View::renderTemplate('footer');
         }
     }
