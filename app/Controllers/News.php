@@ -17,17 +17,21 @@ namespace Controllers;
 use Core\Controller;
 use Core\View;
 
-class News extends Controller { 
+class News extends Controller {
+
+    private $_news;
 
     function __construct() {
-        parent::__construct(); 
+        parent::__construct();
+        $this->_news = new \Models\News();
     }
 
-       public function index($id) {  
-        $data['list'] = $id;
-        
+    public function index($id) {
+        $listeNews = $this->_news->findByUnivers($id);
+        $data['list'] = $listeNews;
+
         View::renderTemplate('header');
-        View::render('news/index',$data);
+        View::render('news/index', $data);
         View::renderTemplate('footer');
     }
 
