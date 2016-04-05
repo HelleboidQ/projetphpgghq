@@ -17,11 +17,15 @@ class Produits extends \Core\Model {
     }
 
     public function findByUnivers($univers_id) {
-        return $this->db->select('SELECT * FROM produits WHERE id_univers = ' . $univers_id);
+        return $this->db->select('SELECT * FROM produits WHERE visible=1 AND id_univers = ' . $univers_id . ' ORDER BY id DESC');
     }
 
     public function findByUniversLast($univers_id) {
-        return $this->db->select('SELECT * FROM produits WHERE id_univers = ' . $univers_id.' LIMIT 5');
+        return $this->db->select('SELECT * FROM produits WHERE visible=1 AND  id_univers = ' . $univers_id . ' ORDER BY id DESC LIMIT 5');
+    }
+
+    public function getProduitById($id) {
+        return $this->db->select('SELECT * FROM produits WHERE id='.$id);
     }
 
 }
