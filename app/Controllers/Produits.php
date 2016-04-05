@@ -13,10 +13,8 @@ class Produits extends Controller {
         $this->_produits = new \Models\Produits();
     }
 
-    public function index() { 
-        //$listeProduits = $this->_produits->findByUnivers(2);
-        $listeProduits = $this->_produits->findAll();
-        $data['list'] = $listeProduits;
+    public function index($id) {  
+        $data['list'] = $id;
         
         View::renderTemplate('header');
         View::render('produits/index',$data);

@@ -1,4 +1,4 @@
-<h2>Liste des produits</h2>
+<h2>News</h2>
 id :
  
 	<?php 
