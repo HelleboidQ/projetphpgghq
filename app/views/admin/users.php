@@ -32,4 +32,28 @@
             });
         });
     });
+
+    $(document).on('click','.modal_edit_trigger',function() {
+        var line = $(this);
+        var id_user = line.data('id');
+        var token_user = line.data('token');
+        var modal = $("#modal_edit");
+
+        alert('ok');
+        
+        $.post( 
+            "edit_user",
+            {
+                id_user: id_user,
+                token_user: token_user
+            }
+        )
+        .success(function(data)
+        {
+            modal.find('.modal-content').html(data);
+        });
+
+        modal.openModal();
+        
+    }); 
 </script>

@@ -12,13 +12,15 @@
     <tbody>
     <?php
         foreach ($data['users'] as $p) {
-                ?>
+
+            $token = hash('sha1',$p->id . $p->pseudo);
+        ?>
         <tr>
             <td><?= $p->id ?></td>
             <td><?= $p->pseudo ?></td>
             <td><?= $p->mail ?></td>
             <td><?= $p->admin ?></td> 
-            <td><a data-id="<?= $p->id; ?>" class="waves-effect waves-light btn modal-trigger modal_edit_trigger">Modifier</a></td>
+            <td><a data-id="<?= $p->id; ?>" data-token="<?= $token; ?>" class="waves-effect waves-light btn modal-trigger modal_edit_trigger">Modifier</a></td>
         </tr>
            
             <?php
@@ -26,23 +28,3 @@
         ?>
     </tbody>
 </table> 
-
-<script>
-    $(document).on('click','.modal_edit_trigger',function() {
-        var line = $(this);
-        var id_user = line.data('id');
-        var modal = $("#modal_edit");
-
-        $.post( 
-            "edit_user",
-            {id_user: id_user}
-        )
-        .success(function(data)
-        {
-            modal.find('.modal-content').html(data);
-        });
-
-        modal.openModal();
-        
-    }); 
-</script>

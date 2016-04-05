@@ -67,10 +67,22 @@ class Admin extends Controller {
     public function edit_user()
     {
         $id = $_POST['id_user'];
+        $token = isset($_POST['token_user']) ? $_POST['token_user'] : '0';
 
         $user = $this->_user->getUsersById($id);
         $data['user'] = $user[0];
-        View::render('admin/edit_user',$data);
+
+        $hash = hash('sha1',$data['user']->id . $data['user']->pseudo);
+
+        if($hash == $token)
+        {
+            View::render('admin/edit_user',$data);
+        }
+        else
+        {
+            echo 'Bah alors, on essaye de faire le D4RK H4CK3R ? (hash AJAX incorrect)';
+        }
+        
     }
 
 }
