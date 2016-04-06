@@ -28,6 +28,7 @@ class Login extends Controller {
     function __construct() {
         parent::__construct();
         $this->users = new \Models\Users();
+        $this->adresses = new \Models\Adresses();
     }
 
     /**
@@ -48,8 +49,45 @@ class Login extends Controller {
 
     public function compte() {
         View::renderTemplate('header');
-        View::render('login/compte');
-        View::renderTemplate('footer');
+        
+        $user_id = \Helpers\Session::get('id');
+
+        $actions_disponibles = array('adresses','infos','commandes','sav');
+
+        $data['action'] = $_GET['action'] ? $_GET['action'] : null;
+        if(in_array($data['action'], $actions_disponibles)){
+
+            View::render('login/compte',$data);
+
+            $data['reponse'] = array();
+
+            switch($data['action'])
+            {
+                case "adresses":
+                    $liste_adresses = $this->adresses->findByUser($user_id);
+                    $data['reponse']['listeAdresses'] = $liste_adresses;
+                break;
+
+                case "infos":
+                    
+                break;
+
+                case "commandes":
+                    
+                break;
+
+                case "sav":
+                    
+                break;
+            }
+            View::render('login/login_' . $data['action'],$data);
+            View::renderTemplate('footer');
+        }
+        else
+        {
+            echo 'balancer 404 ici';
+        }
+        
     }
 
     function newUsers() {
