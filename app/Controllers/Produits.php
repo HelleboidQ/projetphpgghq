@@ -15,6 +15,9 @@ class Produits extends Controller {
     }
 
     public function index($id) {
+        $recupId = explode("-", $id);
+        $id = $recupId[0];
+
         $listeProduits = $this->_produits->findByUnivers($id);
         $data['list'] = $listeProduits;
 
@@ -24,6 +27,9 @@ class Produits extends Controller {
     }
 
     public function detail($id) {
+        $recupId = explode("-", $id);
+        $id = $recupId[0];
+
         $produitDetail = $this->_produits->getProduitById($id);
         $data['list'] = $produitDetail;
 

@@ -4,4 +4,4 @@
 print_r($data['list']);
 ?>
 <br /> 
-<a href='/projetphpgghq/produits/detail/<?= $data['list'][0]->id ?>'><?= $data['list'][0]->nom ?></a>
+<a href='/projetphpgghq/produits/detail/<?= $data['list'][0]->id.'-'.  urlencode($data['list'][0]->nom) ?>'><?= $data['list'][0]->nom ?></a>

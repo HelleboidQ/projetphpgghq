@@ -59,57 +59,57 @@ $hooks = Hooks::get();
 
         <ul id="dropdown2" class="dropdown-content">
             <li>
-                <a href="<?php echo URL; ?>accueil/index/1">Accueil</a>
+                <a href="<?php echo URL; ?>accueil/index/1-film">Accueil</a>
             </li>
             <li>
-                <a href="<?php echo URL; ?>produits/index/1">Produit</a>
+                <a href="<?php echo URL; ?>produits/index/1-film">Produit</a>
             </li>
             <li>
-                <a href="<?php echo URL; ?>news/index/1">News</a>
+                <a href="<?php echo URL; ?>news/index/1-film">News</a>
             </li>
         </ul>
         <ul id="dropdown3" class="dropdown-content">
             <li>
-                <a href="<?php echo URL; ?>accueil/index/2">Accueil</a>
+                <a href="<?php echo URL; ?>accueil/index/2-serie">Accueil</a>
             </li>
             <li>
-                <a href="<?php echo URL; ?>produits/index/2">Produit</a>
+                <a href="<?php echo URL; ?>produits/index/2-serie">Produit</a>
             </li>
             <li>
-                <a href="<?php echo URL; ?>news/index/2">News</a>
+                <a href="<?php echo URL; ?>news/index/2-serie">News</a>
             </li>
         </ul>
         <ul id="dropdown4" class="dropdown-content">
            <li>
-                <a href="<?php echo URL; ?>accueil/index/3">Accueil</a>
+                <a href="<?php echo URL; ?>accueil/index/3-jeuxvideo">Accueil</a>
             </li>
             <li>
-                <a href="<?php echo URL; ?>produits/index/3">Produit</a>
+                <a href="<?php echo URL; ?>produits/index/3-jeuxvideo">Produit</a>
             </li>
             <li>
-                <a href="<?php echo URL; ?>news/index/3">News</a>
+                <a href="<?php echo URL; ?>news/index/3-jeuxvideo">News</a>
             </li>
         </ul>
         <ul id="dropdown5" class="dropdown-content">
            <li>
-                <a href="<?php echo URL; ?>accueil/index/4">Accueil</a>
+                <a href="<?php echo URL; ?>accueil/index/4-musique">Accueil</a>
             </li>
             <li>
-                <a href="<?php echo URL; ?>produits/index/4">Produit</a>
+                <a href="<?php echo URL; ?>produits/index/4-musique">Produit</a>
             </li>
             <li>
-                <a href="<?php echo URL; ?>news/index/4">News</a>
+                <a href="<?php echo URL; ?>news/index/4-musique">News</a>
             </li>
         </ul>
         <ul id="dropdown6" class="dropdown-content">
           <li>
-                <a href="<?php echo URL; ?>accueil/index/5">Accueil</a>
+                <a href="<?php echo URL; ?>accueil/index/5-bd">Accueil</a>
             </li>
             <li>
-                <a href="<?php echo URL; ?>produits/index/5">Produit</a>
+                <a href="<?php echo URL; ?>produits/index/5-bd">Produit</a>
             </li>
             <li>
-                <a href="<?php echo URL; ?>news/index/5">News</a>
+                <a href="<?php echo URL; ?>news/index/5-bd">News</a>
             </li>
         </ul>
         <ul id="dropdown7" class="dropdown-content">

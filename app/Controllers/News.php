@@ -27,6 +27,9 @@ class News extends Controller {
     }
 
     public function index($id) {
+        $recupId = explode("-", $id);
+        $id = $recupId[0];
+
         $listeNews = $this->_news->findByUnivers($id);
         $data['list'] = $listeNews;
 

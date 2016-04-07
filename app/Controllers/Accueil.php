@@ -29,9 +29,12 @@ class Accueil extends Controller {
     }
 
     public function index($id) {
+        $recupId = explode("-", $id);
+        $id = $recupId[0];
+
         $listeNews = $this->_news->findByUniversLast($id);
         $data['news'] = $listeNews;
-        
+
         $listeProduits = $this->_produits->findByUnivers($id);
         $data['produits'] = $listeProduits;
 
