@@ -9,10 +9,7 @@
 
 <!-- Modal Structure -->
   <div id="modal_edit" class="modal">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-    </div>
+    
   </div>
 
 <script type="text/javascript">
@@ -50,7 +47,7 @@
         )
         .success(function(data)
         {
-            modal.find('.modal-content').html(data);
+            modal.html(data);
         });
 
         modal.openModal();

@@ -114,7 +114,7 @@ $hooks = Hooks::get();
         </ul>
         <ul id="dropdown7" class="dropdown-content">
             <li>
-                <a href="<?php echo URL; ?>user/modification">Modifer le compte</a>
+                <a href="<?php echo URL; ?>login/compte?action=infos">Modifer le compte</a>
             </li>
             <li>
                 <a href="<?php echo URL; ?>user/commande">Commande</a>

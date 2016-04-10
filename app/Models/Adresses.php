@@ -11,4 +11,18 @@ class Adresses extends \Core\Model {
     public function findByUser($user_id) {
         return $this->db->select('SELECT * FROM users_adresse WHERE id_users = ' . $user_id .' ORDER BY id DESC');
     }
+
+    public function findById($id) {
+        return $this->db->select('SELECT * FROM users_adresse WHERE id = ' . $id);
+    }
+
+    public function update($data,$where) {
+        $this->db->update(PREFIX.'users_adresse',$data, $where);
+    }
+
+    public function create($data) {
+        $this->db->insert(PREFIX.'users_adresse', $data);
+        return $this->db->lastInsertId('id');
+    }
+
 }

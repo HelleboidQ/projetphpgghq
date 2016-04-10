@@ -24,11 +24,14 @@ class Login extends Controller {
 
     //put your code here
     private $users;
+    private $adresses;
+    private $commandes;
 
     function __construct() {
         parent::__construct();
         $this->users = new \Models\Users();
         $this->adresses = new \Models\Adresses();
+        $this->commandes = new \Models\Commandes();
     }
 
     /**
@@ -73,7 +76,16 @@ class Login extends Controller {
                 break;
 
                 case "commandes":
-                    
+                    $listeRaw = $this->commandes->findByUser($user_id);
+                    $liste_commandes = array();
+
+                    foreach($listeRaw as $produit)
+                    {
+                        $liste_commandes[$produit->id_commande]['infos'] = array('date' => $produit->time);
+                        $liste_commandes[$produit->id_commande]['produits'][] = array('nom' => $produit->nom, 'prix' => $produit->prix);
+                    }
+
+                    $data['reponse']['listeCommandes'] = $liste_commandes;
                 break;
 
                 case "sav":
