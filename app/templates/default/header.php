@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 
 /**
  * Sample layout.
@@ -47,7 +47,7 @@ $hooks = Hooks::get();
 
         <ul id="dropdown1" class="dropdown-content">
             <li>
-                <a href="<?php echo URL; ?>admin/news">News</a>
+                <a href="<?php echo URL; ?>admin/news_index">News</a>
             </li>
             <li>
                 <a href="<?php echo URL; ?>admin/produit">Produits</a>
@@ -190,7 +190,7 @@ $hooks = Hooks::get();
                         ?>
                         <li class="divider"></li>
                         <li>
-                            <a href="<?php echo URL; ?>admin/news">News</a>
+                            <a href="<?php echo URL; ?>admin/list_news">News</a>
                         </li>
                         <li>
                             <a href="<?php echo URL; ?>admin/produit">Produits</a>
@@ -218,10 +218,10 @@ $hooks = Hooks::get();
                     <li><a class="dropdown-button" href="#!" data-activates="dropdown5">Musique<i class="material-icons right">arrow_drop_down</i></a></li> 
                 </ul>
                 <ul class="right hide-on-med-and-down">
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown4">Jeux Vidéo<i class="material-icons right">arrow_drop_down</i></a></li> 
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown4">Jeux VidÃ©o<i class="material-icons right">arrow_drop_down</i></a></li> 
                 </ul>
                 <ul class="right hide-on-med-and-down">
-                    <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Séries<i class="material-icons right">arrow_drop_down</i></a></li> 
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown3">SÃ©ries<i class="material-icons right">arrow_drop_down</i></a></li> 
                 </ul>
                 <ul class="right hide-on-med-and-down">
                     <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Film<i class="material-icons right">arrow_drop_down</i></a></li> 

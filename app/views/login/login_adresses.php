@@ -32,7 +32,7 @@
 
 		</div>
 	</div>
-
+	
 	<div id="modal_edit" class="modal">
 	    <div class="modal-content">
 	        <h4>Modal Header</h4>
@@ -91,5 +91,4 @@
         });   
     }); 
 	</script>
-
 </div>

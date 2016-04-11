@@ -15,5 +15,4 @@ class News extends \Core\Model {
     public function findByUniversLast($univers_id) {
         return $this->db->select('SELECT * FROM news WHERE id_univers = ' . $univers_id.' ORDER BY id DESC LIMIT 4');
     }
-
 }

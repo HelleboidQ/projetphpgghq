@@ -10,21 +10,28 @@ class Admin extends Controller {
     private $_user;
     private $_produits;
     private $_univers;
+    private $_news;
 
     function __construct() {
         parent::__construct();
         $this->_user = new \Models\Users();
         $this->_produits = new \Models\Produits();
         $this->_univers = new \Models\Univers();
+        $this->_news = new \Models\News();
     }
 
-    public function news() {
-        //$listeProduits = $this->_produits->findByUnivers(2);
-        //$listeProduits = $this->_produits->findAll();
-        //$data['list'] = $listeProduits;
+    public function news_index() {
+        $data = array();
+
+        $univers = $this->_univers->findAll();
+        foreach($univers as $u)
+        {
+            $data['univers'][$u->id] = array('univers' => $u, 'news' => array());
+            $data['univers'][$u->id]['news'] = $this->_news->findByUnivers($u->id);
+        }
 
         View::renderTemplate('header');
-        View::render('admin/news');
+        View::render('admin/list_news',$data);
         View::renderTemplate('footer');
     }
 

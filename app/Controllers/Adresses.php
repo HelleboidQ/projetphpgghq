@@ -1,12 +1,10 @@
 <?php
-
 namespace Controllers;
 
 use Core\Controller;
 use Core\View;
 
 class Adresses extends Controller {
-
     private $_adresses;
 
     function __construct() {
@@ -28,7 +26,10 @@ class Adresses extends Controller {
             'cp'            =>  $_POST['cp'],
             'rue'           =>  $_POST['rue'],
             'ville'         =>  $_POST['ville'],
-            'id_users'      =>  \Helpers\Session::get('id')                         
+            'id_users'      =>  \Helpers\Session::get('id'),
+            'defaut'        =>  0,
+            'facturation'   =>  0,
+            'livraison'     =>  0                       
         );
 
         $this->_adresses->create($postdata);
@@ -49,7 +50,7 @@ class Adresses extends Controller {
             'cplt_numero'   =>  $_POST['cplt'],                                 
             'cp'            =>  $_POST['cp'],
             'rue'           =>  $_POST['rue'],
-            'ville'         =>  $_POST['ville']                            
+            'ville'         =>  $_POST['ville']                          
         );
 
         $where = array('id' => $id);
