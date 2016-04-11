@@ -38,4 +38,16 @@ class News extends Controller {
         View::renderTemplate('footer');
     }
 
+    public function detail($id) {
+        $recupId = explode("-", $id);
+        $id = $recupId[0];
+
+        $listeNews = $this->_news->getNewsById($id);
+        $data['list'] = $listeNews;
+
+        View::renderTemplate('header');
+        View::render('news/detail', $data);
+        View::renderTemplate('footer');
+    }
+
 }

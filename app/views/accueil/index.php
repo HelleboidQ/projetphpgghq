@@ -5,9 +5,19 @@
 
 
 <?php
-print_r($data['news']);
+foreach ($data['news'] as $value) {
+    ?> 
+    <div class="col-md-12">
+        <h4><?= $value->nom ?></h4>
+        <img alt="<?= $value->nom ?>" src="<?= URL . "app/views/" . $value->url ?>"> 
+        <p>
+            <?= $value->contenu ?>
+        </p>
+        <a href='/projetphpgghq/news/detail/<?= $value->id.'-'.  urlencode($value->nom) ?>'><?= $value->nom ?></a>
+    </div> 
+    <?php
+}
 ?>
-
 <br /><br/>
 <h3>4 derniers produits :</h3>
 
