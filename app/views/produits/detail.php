@@ -6,13 +6,40 @@ if ($data['list'][0]->lien_ws != "") {
     $spotrate = Curl::get('http://www.omdbapi.com/?i=' . $data['list'][0]->lien_ws);
     $data['spotrate'] = json_decode($spotrate);
 }
- 
+
 
 print_r($data['spotrate']);
+
+echo "<br /><br /><br />";
+print_r($data['list']);
 ?>
 <div class="col-md-12">
     <h1><?= $data['list'][0]->nom ?></h1>
-    Année : <?= $data['list'][0]->annee ?> 
+    <div class="col-md-6">
+        Version : <?= $data['list'][0]->nomModele ?>
+        <br />
+        Année : <?= $data['list'][0]->annee ?> 
+        <br />
+        Genre : <?= $data['list'][0]->type ?> 
+        <br />
+        Auteur : <?= $data['list'][0]->nomAuteur ?> 
+    </div>
+    <div class="col-md-6">
+        Prix <?= number_format($data['list'][0]->prix, 2, ",", " ") ?> ¤
+        <?php
+        if ($data['list'][0]->stock == 0) {
+            ?>
+            Plus dispo
+            <?php
+        } else {
+            ?>
+            <br />
+            Quantité : <input min="1" max="<?= $data['list'][0]->stock ?> " type="number" class="validate" value="1">
+            <a class="waves-effect waves-light btn">Ajouter au panier</a>
+            <?php
+        }
+        ?>
+    </div>
 </div>
 <img alt="<?= $data['list'][0]->nom ?>" src="<?= $data['spotrate']->Poster ?>">
 <p><?= $data['spotrate']->Plot ?></p>
@@ -26,9 +53,9 @@ $url = ("https://translate.google.fr/translate_a/single?client=t&sl=en&tl=fr&hl=
 
 $urlRecup = file_get_contents($url);
 
-echo $urlRecup;  
- 
+echo $urlRecup;
+
 if (preg_match('#[[[(.+)[[#isU', $urlRecup, $value)) {
-   echo "test";
+    echo "test";
 }
 ?>
