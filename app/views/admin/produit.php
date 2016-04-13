@@ -65,7 +65,7 @@
         ?>
         <tr>
             <td><?= $u->id; ?></td>
-            <td><?= $u->nom . " - Version " . $u->nomModele; ?></td>
+            <td>  <a href='/projetphpgghq/produits/detail/<?=$u->id . '-' . urlencode($u->nom) ?>'><?= $u->nom . " - Version " . $u->nomModele; ?></a></td>
             <td><?= number_format($u->prix, 2, ',', ' '); ?>¤</td>
             <td><?= $u->nomUnivers; ?></td>
         </tr>

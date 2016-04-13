@@ -19,7 +19,7 @@
 			      				<?php foreach($u['news'] as $news_univers)
 			      				{
 			      					?>
-			      						<li><a href="<?= URL . 'news/index/' . $news_univers->id . '-' . $news_univers->slug; ?>"><?= $news_univers->nom; ?></li>
+			      						<li><a href="<?= URL . 'news/detail/' . $news_univers->id . '-' . $news_univers->slug; ?>"><?= $news_univers->nom; ?></li>
 			      					<?php
 			      				}
 			      				?>

@@ -6,8 +6,7 @@ if ($data['list'][0]->lien_ws != "") {
     $spotrate = Curl::get('http://www.omdbapi.com/?i=' . $data['list'][0]->lien_ws);
     $data['spotrate'] = json_decode($spotrate);
 }
-
-//print_r($data['list']);
+ 
 
 print_r($data['spotrate']);
 ?>

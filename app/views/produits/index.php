@@ -1,7 +1,16 @@
 <h2>Liste des produits</h2>
 
-<?php
-print_r($data['list']);
-?>
-<br /> 
-<a href='/projetphpgghq/produits/detail/<?= $data['list'][0]->id.'-'.  urlencode($data['list'][0]->nom) ?>'><?= $data['list'][0]->nom ?></a>
+<?php 
+
+foreach ($data['list'] as $value) {
+    ?>
+    <hr>
+    <div class="col-md-3">
+        <h4><?= $value->nom ?></h4> 
+        <p><?= $value->annee ?></p>
+        detail :  
+        <a href='/projetphpgghq/produits/detail/<?= $value->id . '-' . urlencode($value->nom) ?>'><?= $value->nom ?></a>
+    </div> 
+    <?php
+}
+?> 
