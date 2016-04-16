@@ -1,9 +1,9 @@
 <div class="col-md-12">
     <h1><?= $data['news']->nom ?></h1>
     <p>
-        Par  <?= $data['news']->pseudo ?> le  <?= $data['news']->date ?> 
+        Par  <?= $data['auteur']->pseudo ?> le  <?= $data['news']->date ?> 
     </p>
-    <img alt="<?= $data['news']->nom ?>" src="<?= URL . "app/views/" . $data['news']->url ?>"> 
+    <img alt="<?= $data['news']->nom ?>" src="<?= URL . "app/views/" . $data['image']->url ?>"> 
     <p>
         <?= $data['news']->contenu ?>
     </p>

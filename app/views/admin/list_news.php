@@ -10,7 +10,7 @@
                     ?>
                     <div class="col s6">
                         <div class="card-panel">
-                            <span class="card-title black-text text-darken-4"><a class="modal-trigger" href="#modal1"><i class="material-icons right">add</i></a></span>
+                            <span class="card-title black-text text-darken-4"><a class="modal_new_trigger" data-univers="<?= $u['univers']->id; ?>" href="#modal1"><i class="material-icons right">add</i></a></span>
                             <h5><?= $u['univers']->nom; ?></h5>
                             <?php
                             if (count($u['news']) == 0) {
@@ -21,7 +21,7 @@
                                 <?php
                                 foreach ($u['news'] as $news_univers) {
                                     ?>
-                                    <li><a href="<?= URL . 'news/detail/' . $news_univers->id . '-' . $news_univers->slug; ?>"><?= $news_univers->nom; ?></li>
+                                    <li><a class="modal_edit_trigger" data-news="<?= $news_univers->id; ?>" href="#"><?= $news_univers->nom; ?></a></li>
                                     <?php
                                 }
                                 ?>
@@ -33,40 +33,56 @@
                 ?>
 
                 <!-- Modal Structure -->
-                <div id="modal1" class="modal">
-                    <div class="modal-content">
-                        <h4>Ajouter une news</h4>
-                        <form method="POST" action="#">
-                            <label for="nom">Nom</label>
-                            <input type="text" name="nom" id="nom" >
-
-                            <input type="hidden" name="auteur" value="<?= $_SESSION['smvc_id'] ?>" >
-
-                            <label for="univers">Univers</label>
-                            <br /><br /> 
-
-                            <label for="contenu">Contenu</label>
-                            <textarea id="contenu" name="contenu" class="materialize-textarea"></textarea>
-
-
-                            <div class="modal-footer">
-                                <button type="submit" class="waves-effect waves-light btn modal-trigger">Ajouter</button> 
-                            </div>
-                        </form>
-                    </div>
+                <div id="modal_new" class="modal">
+                    
                 </div>
-
-
-
             </div>
         </div>
     </div>
 </div>
 </div>
 <script>
-    $(document).ready(function () {
-        $('.modal-trigger').leanModal();
-    });
+    $(document).on('click','.modal_new_trigger',function() {
+        var line = $(this);
+        var id_univers = line.data('univers');
+        //var token_user = line.data('token');
+        var modal = $("#modal_new");
 
-    CKEDITOR.replace('contenu');
+        $.post( 
+            "<?= URL; ?>news/new",
+            {
+                id_univers: id_univers
+                //token_user: token_user
+            }
+        )
+        .success(function(data)
+        {
+            modal.html(data);
+        });
+
+        modal.openModal();
+        
+    }); 
+
+    $(document).on('click','.modal_edit_trigger',function(e) {
+        e.preventDefault();
+        var line = $(this);
+        var id_news = line.data('news');
+        //var token_user = line.data('token');
+        var modal = $("#modal_new");
+
+        $.post( 
+            "<?= URL; ?>news/edit/" + id_news,
+            {
+                //token_user: token_user
+            }
+        )
+        .success(function(data)
+        {
+            modal.html(data);
+        });
+
+        modal.openModal();
+        
+    }); 
 </script>
