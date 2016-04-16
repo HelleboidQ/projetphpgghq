@@ -8,10 +8,12 @@ use Core\View;
 class Produits extends Controller {
 
     private $_produits;
+    private $_commentaire;
 
     function __construct() {
         parent::__construct();
         $this->_produits = new \Models\Produits();
+        $this->_commentaire = new \Models\Commentaires();
     }
 
     public function index($id) {
@@ -32,6 +34,9 @@ class Produits extends Controller {
 
         $produitDetail = $this->_produits->getProduitById($id);
         $data['list'] = $produitDetail;
+
+        $comDetail = $this->_commentaire->findByProduit($id);
+        $data['com'] = $comDetail;
 
         View::renderTemplate('header');
         View::render('produits/detail', $data);

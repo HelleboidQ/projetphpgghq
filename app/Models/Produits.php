@@ -25,11 +25,14 @@ class Produits extends \Core\Model {
     }
 
     public function getProduitById($id) {
-        return $this->db->select('SELECT p.*, u.nom as nomUnivers, m.prix, m.nom as nomModele, a.nom as nomAuteur
+        return $this->db->select('SELECT p.*, 
+                                    u.nom as nomUnivers, 
+                                    m.prix, m.nom as nomModele,
+                                    a.nom as nomAuteur
                                   FROM produits p
                                     JOIN univers u ON p.id_univers=u.id
                                     JOIN auteur a ON a.id_auteur=p.id_auteur
-                                    JOIN modele m ON m.id_produit=p.id
+                                    JOIN modele m ON m.id_produit=p.id 
                                   WHERE p.id='.$id);
     }
 
