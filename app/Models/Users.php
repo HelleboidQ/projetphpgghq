@@ -47,4 +47,8 @@ class Users extends \Core\Model {
         return false;
     }
 
+    public function update($data,$where) {
+        $this->db->update(PREFIX.'users',$data, $where);
+    }
+
 }

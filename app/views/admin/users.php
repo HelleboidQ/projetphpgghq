@@ -8,9 +8,9 @@
 <br />
 
 <!-- Modal Structure -->
-  <div id="modal_edit" class="modal">
-    
-  </div>
+<div id="modal_edit" class="modal modal-fixed-footer">
+
+</div>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -35,9 +35,7 @@
         var id_user = line.data('id');
         var token_user = line.data('token');
         var modal = $("#modal_edit");
-
-        alert('ok');
-        
+       
         $.post( 
             "edit_user",
             {

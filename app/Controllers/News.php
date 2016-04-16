@@ -92,6 +92,7 @@ class News extends Controller {
 
     public function new_news()
     {
+        $data['univers_en_cours'] = isset($_POST['id_univers']) ? $_POST['id_univers'] : null;
         $data['univers'] = $this->_univers->findAll();
         View::render('news/new', $data);
     }

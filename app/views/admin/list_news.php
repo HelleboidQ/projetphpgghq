@@ -33,7 +33,7 @@
                 ?>
 
                 <!-- Modal Structure -->
-                <div id="modal_new" class="modal">
+                <div id="modal_new" class="modal modal-fixed-footer">
                     
                 </div>
             </div>
