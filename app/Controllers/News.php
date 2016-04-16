@@ -38,7 +38,7 @@ class News extends Controller {
 
         $liste = $this->_news->findByUnivers($id);
         
-        var_dump($liste);
+        
 
         $listeNews = array();
         foreach($liste as $k => $l)
@@ -51,8 +51,6 @@ class News extends Controller {
         }
 
         $data = $listeNews;
-
-        
 
         View::renderTemplate('header');
         View::render('news/index', $data);
@@ -92,7 +90,7 @@ class News extends Controller {
         View::renderTemplate('footer');
     }
 
-    public function new()
+    public function new_news()
     {
         $data['univers'] = $this->_univers->findAll();
         View::render('news/new', $data);

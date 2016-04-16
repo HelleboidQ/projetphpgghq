@@ -26,7 +26,7 @@
 
         <div class="input-field col s12">
             <label for="contenu">Contenu</label>
-            <textarea id="contenu" name="contenu" class="materialize-textarea" value="<?= $data['news']->contenu; ?>"></textarea>
+            <textarea id="contenu" name="contenu" class="materialize-textarea"><?= $data['news']->contenu; ?></textarea>
         </div>
 
         <div class="modal-footer">

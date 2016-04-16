@@ -49,7 +49,7 @@
         var modal = $("#modal_new");
 
         $.post( 
-            "<?= URL; ?>news/new",
+            "<?= URL; ?>news/new_news",
             {
                 id_univers: id_univers
                 //token_user: token_user
