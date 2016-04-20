@@ -124,7 +124,7 @@ $hooks = Hooks::get();
 
 
         <nav>
-            <div class="nav-wrapper">
+            <div class="nav-wrapper teal lighten-2">
                 <a href="<?php echo URL; ?>" class="brand-logo">&nbsp;<?php echo SITETITLE; ?></a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 

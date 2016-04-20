@@ -61,12 +61,14 @@ class News extends Controller {
         $recupId = explode("-", $id);
         $id = $recupId[0];
 
+
         $news = $this->_news->findById($id);
         $news = $news[0];
         $date = new \DateTime($news->date);
         $news->date = $date->format('d/m/Y \à H\hi');
         $data['news'] = $news;
-
+    
+        $data['banner']['univers'] = $this->_univers->findById($news->id_univers);
 
         $data['image'] = $this->_news->findNewsImage($id);
         $data['image'] = $data['image'][0];
@@ -84,8 +86,11 @@ class News extends Controller {
             $c->date = $date->format('d/m/Y H\hi');
             $data['commentaires'][] = array('commentaire' => $c, 'auteur' => $auteur);
         }
-        
-        View::renderTemplate('header');
+
+        $data['settings']['dontShowContainer'] = 1;
+
+        View::renderTemplate('header',$data);
+        View::renderTemplate('banner-mini',$data);
         View::render('news/detail', $data);
         View::renderTemplate('footer');
     }
