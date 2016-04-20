@@ -1,0 +1,75 @@
+$opacite_overlay: 0.7;
+
+.rating a {
+   float: right;
+   color: #aaa;
+   text-decoration: none;
+   font-size: 3em;
+   transition: color .4s;
+}
+.rating a:hover,
+.rating a:focus,
+.rating a:hover ~ a,
+.rating a:focus ~ a {
+   color: orange;
+   cursor: pointer;
+}
+
+.overlay
+{
+	width:100%;
+	height:100%;
+	position: absolute;
+	background-color: rgba(0,0,0,$opacite_overlay);
+}
+
+/* Bannière */
+.row-banniere-univers
+{
+	width:100%;
+	height:250px;
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	position: relative;
+	
+	.overlay
+	{
+		display: flex;
+		flex-direction:column;
+		justify-content:center;
+		align-items:center;
+		h1
+		{
+			font-family: Montserrat, Arial;
+			font-size:4rem;
+			color:white;
+			text-transform: uppercase;
+		}
+	}
+}
+
+.row-banniere-univers-jv
+{
+	background-image:url("../img/banner_jv.jpg");
+}
+
+.row-banniere-univers-musique
+{
+	background-image:url("../img/banner_mus.jpg");
+}
+
+.row-banniere-univers-series
+{
+	background-image:url("../img/banner_series.jpg");
+}
+
+.row-banniere-univers-bd
+{
+	background-image:url("../img/banner_bd.jpg");
+}
+
+.row-banniere-univers-films
+{
+	background-image:url("../img/banner_films.jpg");
+}

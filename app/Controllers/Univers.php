@@ -15,8 +15,6 @@ class Univers extends Controller {
     }
 
     public function index() { 
-        //$listeUnivers = "lel";
-
         $listeUnivers = $this->_univers->findAll();
         $data['list'] = $listeUnivers;
         

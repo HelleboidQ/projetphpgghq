@@ -26,6 +26,7 @@ $hooks = Hooks::get();
         Assets::css([
             '//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css',
             URL . 'app/templates/default/css/style.css',
+            'https://fonts.googleapis.com/css?family=Montserrat:400,700'
         ]);
 
         //hook for plugging in css
@@ -230,4 +231,10 @@ $hooks = Hooks::get();
             </div>
         </nav>
 
-        <div class="container"> 
+        <?php if(!isset($data['settings']['dontShowContainer']))
+        {
+            ?>
+                <div class="container"> 
+            <?php
+        }
+        ?>

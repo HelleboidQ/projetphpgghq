@@ -21,11 +21,13 @@ class Accueil extends Controller {
 
     private $_news;
     private $_produits;
+    private $_univers;
 
     function __construct() {
         parent::__construct();
         $this->_produits = new \Models\Produits();
         $this->_news = new \Models\News();
+        $this->_univers = new \Models\Univers();
     }
 
     public function index($id) {
@@ -38,8 +40,12 @@ class Accueil extends Controller {
         $listeProduits = $this->_produits->findByUnivers($id);
         $data['produits'] = $listeProduits;
 
+        $data['univers'] = $this->_univers->findById($id);
 
-        View::renderTemplate('header');
+        $data['settings']['dontShowContainer'] = 1; // On passe cette variable au template header pour que le container soit déclaré après la bannière (afin qu'elle puisse prendre la largeur entière)
+
+        View::renderTemplate('header',$data);
+        View::renderTemplate('banner',$data);
         View::render('accueil/index', $data);
         View::renderTemplate('footer');
     }
