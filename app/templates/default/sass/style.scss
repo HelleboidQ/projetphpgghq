@@ -1,3 +1,5 @@
+@import "compass/css3/transition";
+
 $opacite_overlay: 0.7;
 
 .rating a {
@@ -72,4 +74,66 @@ $opacite_overlay: 0.7;
 .row-banniere-univers-films
 {
 	background-image:url("../img/banner_films.jpg");
+}
+
+/* Tiles */
+.tile-list
+{
+	width:100%;
+	margin:auto;
+	font-size:0px;
+}
+
+
+
+.tile-block
+{
+	display: inline-block;
+	&.tile-35
+	{
+		width:35%;
+	}
+
+	&.tile-40
+	{
+		width:40%;
+		.tile
+		{
+			height:400px;
+		}
+	}
+
+	&.tile-25
+	{
+		width:25%;
+	}	
+}
+
+.tile
+{
+	height:200px;
+	width:100%;
+	font-size: 1rem;
+	position: relative;
+	background-size: cover;
+	background-position: 50% 50%;
+	
+	h5
+	{
+		position: absolute;
+		bottom:20px;
+		left:20px;
+		color:white;	
+	}
+	.overlay
+	{
+		background-color: rgba(0,0,0,$opacite_overlay - 0.2);
+		@include single-transition(all, 1s, ease, 0s);
+	}
+
+	&:hover .overlay
+	{
+		background-color: rgba(0,0,0,$opacite_overlay);
+	}
+
 }

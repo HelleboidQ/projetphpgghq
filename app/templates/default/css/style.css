@@ -63,3 +63,52 @@
 .row-banniere-univers-films {
   background-image: url("../img/banner_films.jpg");
 }
+
+/* Tiles */
+.tile-list {
+  width: 100%;
+  margin: auto;
+  font-size: 0px;
+}
+
+.tile-block {
+  display: inline-block;
+}
+.tile-block.tile-35 {
+  width: 35%;
+}
+.tile-block.tile-40 {
+  width: 40%;
+}
+.tile-block.tile-40 .tile {
+  height: 400px;
+}
+.tile-block.tile-25 {
+  width: 25%;
+}
+
+.tile {
+  height: 200px;
+  width: 100%;
+  font-size: 1rem;
+  position: relative;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+.tile h5 {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+}
+.tile .overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  -moz-transition: all 1s ease 0s;
+  -o-transition: all 1s ease 0s;
+  -webkit-transition: all 1s ease;
+  -webkit-transition-delay: 0s;
+  transition: all 1s ease 0s;
+}
+.tile:hover .overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}

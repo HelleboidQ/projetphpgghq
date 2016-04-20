@@ -14,19 +14,16 @@ class News extends \Core\Model {
                                 WHERE id_univers = ' . $univers_id . ' ORDER BY id DESC');
     
     }
-    public function findByUniversLast($univers_id) {
-        return $this->db->select('SELECT n.*,ni.url 
-                                FROM news n
-                                    JOIN news_image ni ON n.id=ni.id_news
-                                WHERE id_univers = ' . $univers_id . ' ORDER BY id DESC LIMIT 4');
+    public function findByUniversLast($univers_id, $number) {
+        return $this->db->select('SELECT * 
+                                FROM news 
+                                WHERE id_univers = ' . $univers_id . ' ORDER BY id DESC LIMIT ' . $number);
     }
 
     public function getNewsById($id) {
-        return $this->db->select('SELECT n.*,ni.url, u.pseudo 
-                                FROM news n
-                                    JOIN news_image ni ON n.id=ni.id_news
-                                    JOIN users u ON u.id = n.auteur
-                                WHERE n.id=' . $id);
+        return $this->db->select('SELECT * 
+                                FROM news 
+                                WHERE id =' . $id);
     }
 
     public function findById($id)
