@@ -1,6 +1,30 @@
-<h2>Liste des produits</h2>
+<div class="col s9">
+    <h2>Liste des produits</h2>
 
-<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Ajouter un produit</a>
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Ajouter un produit</a>
+
+    <table class="highlight">
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prix</th>
+            <th>Univers</th>
+        </tr>
+        <?php
+        foreach ($data['list'] as $u) {
+            ?>
+            <tr>
+                <td><?= $u->id; ?></td>
+                <td>  <a href='/projetphpgghq/produits/detail/<?=$u->id . '-' . urlencode($u->nom) ?>'><?= $u->nom . " - Version " . $u->nomModele; ?></a></td>
+                <td><?= number_format($u->prix, 2, ',', ' '); ?>â‚¬</td>
+                <td><?= $u->nomUnivers; ?></td>
+            </tr>
+            <?php
+        }
+        ?>
+    </table>
+</div>
+</div>
 
 <!-- Modal Structure -->
 <div id="modal1" class="modal">
@@ -53,28 +77,6 @@
         </form>
     </div>
 </div>
-<table class="highlight">
-    <tr>
-        <th>ID</th>
-        <th>Nom</th>
-        <th>Prix</th>
-        <th>Univers</th>
-    </tr>
-    <?php
-    foreach ($data['list'] as $u) {
-        ?>
-        <tr>
-            <td><?= $u->id; ?></td>
-            <td>  <a href='/projetphpgghq/produits/detail/<?=$u->id . '-' . urlencode($u->nom) ?>'><?= $u->nom . " - Version " . $u->nomModele; ?></a></td>
-            <td><?= number_format($u->prix, 2, ',', ' '); ?>¤</td>
-            <td><?= $u->nomUnivers; ?></td>
-        </tr>
-        <?php
-    }
-    ?>
-</table>
-
-
 
 <script>
     $(document).ready(function () {

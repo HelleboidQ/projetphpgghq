@@ -11,6 +11,7 @@ class Admin extends Controller {
     private $_produits;
     private $_univers;
     private $_news;
+    private $_medias;
 
     function __construct() {
         parent::__construct();
@@ -18,6 +19,76 @@ class Admin extends Controller {
         $this->_produits = new \Models\Produits();
         $this->_univers = new \Models\Univers();
         $this->_news = new \Models\News();
+        $this->_medias = new \Models\Medias();
+    }
+
+    public function index()
+    {
+        View::renderTemplate('header');
+
+        $actions_disponibles = array('index', 'medias','commandes','sav','news','users','produits');
+
+        $data['action'] = $_GET['action'] ? $_GET['action'] : 'index';
+        if(in_array($data['action'], $actions_disponibles)){
+
+            View::render('admin/menu',$data);
+
+            $data['reponse'] = array();
+
+            switch($data['action'])
+            {
+                case "adresses":
+                    $liste_adresses = $this->adresses->findByUser($user_id);
+                    $data['reponse']['listeAdresses'] = $liste_adresses;
+                break;
+
+                case "index":
+                    
+                break;
+
+                case "commandes":
+                    $listeRaw = $this->commandes->findByUser($user_id);
+                    $liste_commandes = array();
+
+                    foreach($listeRaw as $produit)
+                    {
+                        $liste_commandes[$produit->id_commande]['infos'] = array('date' => $produit->time);
+                        $liste_commandes[$produit->id_commande]['produits'][] = array('nom' => $produit->nom, 'prix' => $produit->prix);
+                    }
+
+                    $data['reponse']['listeCommandes'] = $liste_commandes;
+                break;
+
+                case "sav":
+                    
+                break;
+
+                case "medias":
+                    $this->medias();
+                break;
+
+                case "news":
+                    $this->news_index();
+                break;
+
+                case "produits":
+                    $this->produit();
+                break;
+            }
+            View::renderTemplate('footer');
+        }
+        else
+        {
+            echo 'balancer 404 ici';
+        }
+
+        
+    }
+
+    public function medias()
+    {
+        $data['medias'] = $this->_medias->findLast(20);
+        View::render('admin/list_medias',$data);
     }
 
     public function news_index() {
@@ -30,9 +101,7 @@ class Admin extends Controller {
             $data['univers'][$u->id]['news'] = $this->_news->findByUnivers($u->id);
         }
 
-        View::renderTemplate('header');
         View::render('admin/list_news',$data);
-        View::renderTemplate('footer');
     }
 
     public function produit() {
@@ -42,10 +111,7 @@ class Admin extends Controller {
         $listeUnivers = $this->_univers->findAll();
         $data['univers'] = $listeUnivers;
 
-
-        View::renderTemplate('header');
         View::render('admin/produit', $data);
-        View::renderTemplate('footer');
     }
 
     public function users() {

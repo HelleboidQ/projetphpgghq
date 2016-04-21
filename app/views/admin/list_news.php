@@ -31,16 +31,16 @@
                     <?php
                 }
                 ?>
-
-                <!-- Modal Structure -->
-                <div id="modal_new" class="modal modal-fixed-footer">
-                    
-                </div>
             </div>
         </div>
     </div>
 </div>
 </div>
+<!-- Modal Structure -->
+                <div id="modal_new" class="modal modal-fixed-footer">
+                    
+                </div>
+                
 <script>
     $(document).on('click','.modal_new_trigger',function() {
         var line = $(this);
