@@ -143,7 +143,7 @@ $hooks = Hooks::get();
                     <ul class="right hide-on-med-and-down">
                        
                         <li>
-                            <a href="<?php echo URL; ?>user/panier">Mon panier</a>
+                            <a href="<?php echo URL; ?>users/panier">Mon panier</a>
                         </li> <li>
                             <a href="<?php echo URL; ?>login/logout">Logout</a>
                         </li>

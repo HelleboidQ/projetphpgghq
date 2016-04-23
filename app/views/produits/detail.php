@@ -64,16 +64,35 @@ foreach ($data['com'] as $com) {
 ?>
 Laisser un avis  
 <div class="rating "><!--
-    --><a href="#5" title="5 étoiles">&#9733;</a><!--
-    --><a href="#4" title="4 étoiles">&#9733;</a><!--
-    --><a href="#3" title="3 étoiles">&#9733;</a><!--
-    --><a href="#2" title="2 étoiles">&#9733;</a><!--
-    --><a href="#1" title="1 étoile">&#9733;</a>
+    --><a id="5" href="#5" title="5 étoiles">&#9733;</a><!--
+    --><a id="4" href="#4" title="4 étoiles">&#9733;</a><!--
+    --><a id="3" href="#3" title="3 étoiles">&#9733;</a><!--
+    --><a id="2" href="#2" title="2 étoiles">&#9733;</a><!--
+    --><a id="1" href="#1" title="1 étoile">&#9733;</a>
 </div> 
 <form method="POST" action="<?= URL; ?>#">
     <label for="commentaire">Commentaire : </label>
     <textarea id="commentaire" class="materialize-textarea"></textarea>
-   <!-- <input type="hidden" name="note" value=""> -->
+    <input type="hidden" name="note" id="note" value="-1">
 
     <button type="submit" value="ajouterCommentaire" class="waves-effect waves-light btn modal-trigger">Ajouter</button> 
 </form>
+
+<script>
+    $(document).on('click', '#5', function () {
+        $('#note').val("5");
+    });
+    $(document).on('click', '#4', function () {
+        $('#note').val("4");
+    });
+    $(document).on('click', '#3', function () {
+        $('#note').val("3");
+    });
+    $(document).on('click', '#2', function () {
+        $('#note').val("2");
+    });
+    $(document).on('click', '#1', function () {
+        $('#note').val("1");
+    });
+
+</script>
