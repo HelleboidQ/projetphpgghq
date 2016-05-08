@@ -9,11 +9,13 @@ class Produits extends Controller {
 
     private $_produits;
     private $_commentaire;
+    private $_modele;
 
     function __construct() {
         parent::__construct();
         $this->_produits = new \Models\Produits();
         $this->_commentaire = new \Models\Commentaires();
+        $this->_modele = new \Models\Modele();
     }
 
     public function index($id) {
@@ -34,6 +36,11 @@ class Produits extends Controller {
 
         $produitDetail = $this->_produits->getProduitById($id);
         $data['list'] = $produitDetail;
+
+        $modeles = $this->_modele->findByProduit($id);
+        $data['modeles'] = $modeles;
+
+        var_dump($data['modeles']);
 
         $comDetail = $this->_commentaire->findByProduit($id);
         $data['com'] = $comDetail;

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.12deb2+deb8u1
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Apr 11, 2016 at 09:34 PM
--- Server version: 5.5.44-0+deb8u1
--- PHP Version: 5.6.17-0+deb8u1
+-- Client :  127.0.0.1
+-- Généré le :  Dim 08 Mai 2016 à 13:28
+-- Version du serveur :  5.7.9
+-- Version de PHP :  7.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,27 +14,29 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `gghq`
+-- Base de données :  `gghq`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auteur`
+-- Structure de la table `auteur`
 --
 
+DROP TABLE IF EXISTS `auteur`;
 CREATE TABLE IF NOT EXISTS `auteur` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_auteur` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
-  `description` text
+  `description` text,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `auteur`
+-- Contenu de la table `auteur`
 --
 
 INSERT INTO `auteur` (`id`, `id_auteur`, `nom`, `description`) VALUES
@@ -43,138 +45,210 @@ INSERT INTO `auteur` (`id`, `id_auteur`, `nom`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `avis`
+-- Structure de la table `avis`
 --
 
+DROP TABLE IF EXISTS `avis`;
 CREATE TABLE IF NOT EXISTS `avis` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL,
   `id_produit` int(11) NOT NULL,
-  `note` int(11) NOT NULL
+  `note` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_user` (`id_user`),
+  KEY `id_produit` (`id_produit`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commande`
+-- Structure de la table `commande`
 --
 
+DROP TABLE IF EXISTS `commande`;
 CREATE TABLE IF NOT EXISTS `commande` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_users` int(11) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `id_users` (`id_users`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commande_detail`
+-- Structure de la table `commande_detail`
 --
 
+DROP TABLE IF EXISTS `commande_detail`;
 CREATE TABLE IF NOT EXISTS `commande_detail` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_commande` int(11) NOT NULL,
   `id_produit` int(11) NOT NULL,
-  `prix` int(11) NOT NULL
+  `prix` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_commande` (`id_commande`),
+  KEY `id_produit` (`id_produit`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commentaire`
+-- Structure de la table `commentaire`
 --
 
+DROP TABLE IF EXISTS `commentaire`;
 CREATE TABLE IF NOT EXISTS `commentaire` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL,
   `id_produit` int(11) NOT NULL,
   `news` tinyint(2) NOT NULL COMMENT '1:produit - 2:news',
-  `texte` text NOT NULL
+  `texte` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_user` (`id_user`),
+  KEY `id_produit` (`id_produit`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `modele`
+-- Structure de la table `medias`
 --
 
-CREATE TABLE IF NOT EXISTS `modele` (
-`id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `medias`;
+CREATE TABLE IF NOT EXISTS `medias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
-  `id_produit` int(11) NOT NULL,
-  `prix` float(5,2) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `url` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `modele`
+-- Contenu de la table `medias`
 --
 
-INSERT INTO `modele` (`id`, `nom`, `id_produit`, `prix`) VALUES
-(1, 'dématérialiser', 1, 10.00);
+INSERT INTO `medias` (`id`, `nom`, `url`) VALUES
+(1, 'Trevor', 'trevor.png'),
+(2, 'Minecraft', 'minecraft.jpg'),
+(3, 'Star Wars', 'Star-Wars-7-New-Banner.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `news`
+-- Structure de la table `modele`
 --
 
+DROP TABLE IF EXISTS `modele`;
+CREATE TABLE IF NOT EXISTS `modele` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) NOT NULL,
+  `id_produit` int(11) NOT NULL,
+  `prix` float(5,2) NOT NULL,
+  `stock` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `modele`
+--
+
+INSERT INTO `modele` (`id`, `nom`, `id_produit`, `prix`, `stock`) VALUES
+(1, 'dématérialisé', 1, 10.00, NULL),
+(2, 'Blu-ray', 1, 25.00, 7),
+(3, 'DVD', 1, 20.00, 19);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `news`
+--
+
+DROP TABLE IF EXISTS `news`;
 CREATE TABLE IF NOT EXISTS `news` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `slug` varchar(255) NOT NULL,
   `nom` varchar(150) NOT NULL,
   `auteur` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `contenu` text NOT NULL,
-  `id_univers` int(11) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `id_univers` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `news`
+-- Contenu de la table `news`
 --
 
 INSERT INTO `news` (`id`, `slug`, `nom`, `auteur`, `date`, `contenu`, `id_univers`) VALUES
-(1, 'news-test-jv', '1ère news JV', 7, '2016-04-11 15:13:05', 'Test d''une news Jeux Vidéo', 3);
+(1, 'news-test-jv', '1ère news JV', 7, '2016-04-11 15:13:05', '<p>Test d&#39;une news Jeux Vid&eacute;os</p>\r\n', 3),
+(2, '', 'tests', 7, '2016-04-20 16:02:06', '<p>dsfsd</p>\r\n', 1),
+(3, 'news-test-jv', '2e news JV', 7, '2016-04-11 15:13:05', 'Test d''une news Jeux Vidéo', 3),
+(4, 'news-test-jv', '3e news JV', 7, '2016-04-11 15:13:05', 'Test d''une news Jeux Vidéo', 3),
+(5, 'news-test-jv', '4e news JV', 7, '2016-04-11 15:13:05', 'Test d''une news Jeux Vidéo', 3),
+(6, 'news-test-jv', '5e news JV', 7, '2016-04-11 15:13:05', '<p>Test d&#39;une news Jeux Vid&eacute;os</p>\r\n', 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `news_image`
+-- Structure de la table `news_image`
 --
 
+DROP TABLE IF EXISTS `news_image`;
 CREATE TABLE IF NOT EXISTS `news_image` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_news` int(11) NOT NULL,
-  `url` varchar(255) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `url` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `news_image`
+-- Contenu de la table `news_image`
 --
 
 INSERT INTO `news_image` (`id`, `id_news`, `url`) VALUES
-(1, 1, '/img/test.jpg');
+(1, 1, '/img/test.jpg'),
+(2, 3, '/img/Star-Wars-7-New-Banner.jpg'),
+(3, 4, '/img/minecraft.jpg'),
+(4, 6, '/img/trevor.png'),
+(5, 5, '/img/1kki.png');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `panier`
+-- Structure de la table `panier`
 --
 
+DROP TABLE IF EXISTS `panier`;
 CREATE TABLE IF NOT EXISTS `panier` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_users` int(11) NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `id_produit` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id_produit` int(11) NOT NULL,
+  `id_modele` int(11) NOT NULL,
+  `quantite` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_produit` (`id_produit`),
+  KEY `id_users` (`id_users`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `panier`
+--
+
+INSERT INTO `panier` (`id`, `id_users`, `time`, `id_produit`, `id_modele`, `quantite`) VALUES
+(8, 7, '2016-05-08 13:28:30', 1, 1, 4),
+(7, 7, '2016-05-08 13:27:05', 1, 3, 2),
+(6, 7, '2016-05-08 13:28:15', 1, 2, 21);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `produits`
+-- Structure de la table `produits`
 --
 
+DROP TABLE IF EXISTS `produits`;
 CREATE TABLE IF NOT EXISTS `produits` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   `id_univers` int(11) NOT NULL,
   `titre` varchar(255) NOT NULL,
@@ -183,11 +257,12 @@ CREATE TABLE IF NOT EXISTS `produits` (
   `type` varchar(255) NOT NULL,
   `lien_ws` varchar(255) DEFAULT NULL,
   `stock` int(11) NOT NULL DEFAULT '0',
-  `visible` tinyint(2) NOT NULL DEFAULT '1'
+  `visible` tinyint(2) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `produits`
+-- Contenu de la table `produits`
 --
 
 INSERT INTO `produits` (`id`, `nom`, `id_univers`, `titre`, `annee`, `id_auteur`, `type`, `lien_ws`, `stock`, `visible`) VALUES
@@ -196,81 +271,97 @@ INSERT INTO `produits` (`id`, `nom`, `id_univers`, `titre`, `annee`, `id_auteur`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `produits_image`
+-- Structure de la table `produits_image`
 --
 
+DROP TABLE IF EXISTS `produits_image`;
 CREATE TABLE IF NOT EXISTS `produits_image` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_produit` int(11) NOT NULL,
-  `url` varchar(255) NOT NULL
+  `url` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `promo`
+-- Structure de la table `promo`
 --
 
+DROP TABLE IF EXISTS `promo`;
 CREATE TABLE IF NOT EXISTS `promo` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` int(11) NOT NULL,
   `pourcentage` int(11) NOT NULL,
   `dateDebut` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `dateFin` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `id_promo` int(11) NOT NULL
+  `id_promo` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `similaire`
+-- Structure de la table `similaire`
 --
 
+DROP TABLE IF EXISTS `similaire`;
 CREATE TABLE IF NOT EXISTS `similaire` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_produit1` int(11) NOT NULL,
-  `id_produit2` int(11) NOT NULL
+  `id_produit2` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_produit1` (`id_produit1`),
+  KEY `id_produit2` (`id_produit2`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `univers`
+-- Structure de la table `univers`
 --
 
+DROP TABLE IF EXISTS `univers`;
 CREATE TABLE IF NOT EXISTS `univers` (
-`id` int(11) NOT NULL,
-  `nom` varchar(50) NOT NULL
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(50) NOT NULL,
+  `couleur` varchar(50) NOT NULL,
+  `slug` varchar(10) NOT NULL COMMENT 'Utilisé pour les classes CSS à l''affichage (bannières notamment)',
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `univers`
+-- Contenu de la table `univers`
 --
 
-INSERT INTO `univers` (`id`, `nom`) VALUES
-(1, 'Films'),
-(2, 'Séries'),
-(3, 'Jeux Vidéo'),
-(4, 'Musique'),
-(5, 'BD');
+INSERT INTO `univers` (`id`, `nom`, `couleur`, `slug`) VALUES
+(1, 'Films', 'teal lighten-3', 'films'),
+(2, 'Séries', '', 'series'),
+(3, 'Jeux Vidéo', '', 'jv'),
+(4, 'Musique', '', 'musique'),
+(5, 'Bande Dessinée', '', 'bd');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structure de la table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `pseudo` varchar(100) NOT NULL,
   `mail` varchar(100) NOT NULL,
   `pass` varchar(60) NOT NULL,
   `admin` tinyint(2) DEFAULT '0',
-  `actif` tinyint(2) NOT NULL DEFAULT '1'
+  `actif` tinyint(2) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `pseudo_2` (`pseudo`),
+  KEY `pseudo` (`pseudo`)
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Contenu de la table `users`
 --
 
 INSERT INTO `users` (`id`, `pseudo`, `mail`, `pass`, `admin`, `actif`) VALUES
@@ -280,11 +371,12 @@ INSERT INTO `users` (`id`, `pseudo`, `mail`, `pass`, `admin`, `actif`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users_adresse`
+-- Structure de la table `users_adresse`
 --
 
+DROP TABLE IF EXISTS `users_adresse`;
 CREATE TABLE IF NOT EXISTS `users_adresse` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_users` int(11) NOT NULL,
   `defaut` int(11) NOT NULL DEFAULT '0',
   `numero` int(11) NOT NULL,
@@ -293,202 +385,22 @@ CREATE TABLE IF NOT EXISTS `users_adresse` (
   `cp` varchar(5) NOT NULL,
   `ville` varchar(50) NOT NULL,
   `facturation` tinyint(1) NOT NULL,
-  `livraison` tinyint(1) NOT NULL
+  `livraison` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_users` (`id_users`),
+  KEY `facturation` (`facturation`),
+  KEY `livraison` (`livraison`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users_adresse`
+-- Contenu de la table `users_adresse`
 --
 
 INSERT INTO `users_adresse` (`id`, `id_users`, `defaut`, `numero`, `cplt_numero`, `rue`, `cp`, `ville`, `facturation`, `livraison`) VALUES
 (3, 7, 0, 16, 'TER', 'Route de Mers', '76260', 'Eu', 1, 1),
 (5, 7, 0, 25, 'BIS', 'Rue de test', '80000', 'AMIENS', 0, 0),
-(6, 7, 0, 22, 'TER', 'test', '80000', 'Amiens', 0, 0);
+(6, 7, 1, 22, '', 'rue de test', '80000', 'Amiens', 0, 0);
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `auteur`
---
-ALTER TABLE `auteur`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `avis`
---
-ALTER TABLE `avis`
- ADD PRIMARY KEY (`id`), ADD KEY `id_user` (`id_user`), ADD KEY `id_produit` (`id_produit`);
-
---
--- Indexes for table `commande`
---
-ALTER TABLE `commande`
- ADD PRIMARY KEY (`id`), ADD KEY `id_users` (`id_users`);
-
---
--- Indexes for table `commande_detail`
---
-ALTER TABLE `commande_detail`
- ADD PRIMARY KEY (`id`), ADD KEY `id_commande` (`id_commande`), ADD KEY `id_produit` (`id_produit`);
-
---
--- Indexes for table `commentaire`
---
-ALTER TABLE `commentaire`
- ADD PRIMARY KEY (`id`), ADD KEY `id_user` (`id_user`), ADD KEY `id_produit` (`id_produit`);
-
---
--- Indexes for table `modele`
---
-ALTER TABLE `modele`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `news`
---
-ALTER TABLE `news`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `news_image`
---
-ALTER TABLE `news_image`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `panier`
---
-ALTER TABLE `panier`
- ADD PRIMARY KEY (`id`), ADD KEY `id_produit` (`id_produit`), ADD KEY `id_users` (`id_users`);
-
---
--- Indexes for table `produits`
---
-ALTER TABLE `produits`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `produits_image`
---
-ALTER TABLE `produits_image`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `promo`
---
-ALTER TABLE `promo`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `similaire`
---
-ALTER TABLE `similaire`
- ADD PRIMARY KEY (`id`), ADD KEY `id_produit1` (`id_produit1`), ADD KEY `id_produit2` (`id_produit2`);
-
---
--- Indexes for table `univers`
---
-ALTER TABLE `univers`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `pseudo_2` (`pseudo`), ADD KEY `pseudo` (`pseudo`);
-
---
--- Indexes for table `users_adresse`
---
-ALTER TABLE `users_adresse`
- ADD PRIMARY KEY (`id`), ADD KEY `id_users` (`id_users`), ADD KEY `facturation` (`facturation`), ADD KEY `livraison` (`livraison`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `auteur`
---
-ALTER TABLE `auteur`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `avis`
---
-ALTER TABLE `avis`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `commande`
---
-ALTER TABLE `commande`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `commande_detail`
---
-ALTER TABLE `commande_detail`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `commentaire`
---
-ALTER TABLE `commentaire`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `modele`
---
-ALTER TABLE `modele`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `news`
---
-ALTER TABLE `news`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `news_image`
---
-ALTER TABLE `news_image`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `panier`
---
-ALTER TABLE `panier`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `produits`
---
-ALTER TABLE `produits`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `produits_image`
---
-ALTER TABLE `produits_image`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `promo`
---
-ALTER TABLE `promo`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `similaire`
---
-ALTER TABLE `similaire`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `univers`
---
-ALTER TABLE `univers`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `users_adresse`
---
-ALTER TABLE `users_adresse`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

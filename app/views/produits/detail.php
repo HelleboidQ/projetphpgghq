@@ -14,31 +14,46 @@ if ($data['list'][0]->lien_ws != "") {
   print_r($data['list']);
 
  */
+  var_dump($data['list']);
 ?>
 <div class="col-md-12">
     <h1><?= $data['list'][0]->nom ?></h1>
     <div class="col-md-6"> 
-        AnnÈe : <?= $data['list'][0]->annee ?> 
+        Ann√©e : <?= $data['list'][0]->annee ?> 
         <br />
         Genre : <?= $data['list'][0]->type ?> 
         <br />
         Auteur : <?= $data['list'][0]->nomAuteur ?> 
     </div>
+    <br><br>
     <div class="col-md-6">
-        Version <?= $data['list'][0]->nomModele ?> :
-        Prix <?= number_format($data['list'][0]->prix, 2, ",", " ") ?> §
         <?php
-        if ($data['list'][0]->stock == 0) {
-            ?>
-            Plus dispo
-            <?php
-        } else {
-            ?>
-            <br />
-            QuantitÈ : <input min="1" max="<?= $data['list'][0]->stock ?> " type="number" class="validate" value="1">
-            <a class="waves-effect waves-light btn">Ajouter au panier</a>
-            <?php
+        foreach($data['modeles'] as $m)
+        {
+            echo $m->nom . ' / ' . $m->prix . '‚Ç¨';
+
+            if($m->stock === 0)
+            {
+                echo '√âpuis√©<br>';
+            }
+            else 
+            {
+                ?>
+                 <form class="col s12" class="form-panier" data-modele="<?= $m->id; ?>" action="<?= URL; ?>panier/add/">
+                    <div class="row">
+                        <div class="input-field col s6">
+                          <input class="panier-add" data-modele="<?= $m->id; ?>" min="1" max="<?php echo ($m->stock == null) ? '40' : $m->stock; ?>" type="number" class="validate" value="1">
+                          <label for="first_name">Quantit√©</label>
+                        </div>
+                    </div>
+                    <button class="panier-add-submit btn waves-effect waves-light" data-modele="<?= $m->id; ?>" type="submit" name="action">Ajouter au panier</button>
+                </form>
+                <br>
+                <?php
+            }
         }
+
+        
         ?>
     </div>
 </div>
@@ -64,13 +79,13 @@ foreach ($data['com'] as $com) {
 ?>
 Laisser un avis  
 <div class="rating "><!--
-    --><a id="5" href="#5" title="5 Ètoiles">&#9733;</a><!--
-    --><a id="4" href="#4" title="4 Ètoiles">&#9733;</a><!--
-    --><a id="3" href="#3" title="3 Ètoiles">&#9733;</a><!--
-    --><a id="2" href="#2" title="2 Ètoiles">&#9733;</a><!--
-    --><a id="1" href="#1" title="1 Ètoile">&#9733;</a>
+    --><a id="5" href="#5" title="5 √©toiles">&#9733;</a><!--
+    --><a id="4" href="#4" title="4 √©toiles">&#9733;</a><!--
+    --><a id="3" href="#3" title="3 √©toiles">&#9733;</a><!--
+    --><a id="2" href="#2" title="2 √©toiles">&#9733;</a><!--
+    --><a id="1" href="#1" title="1 √©toile">&#9733;</a>
 </div> 
-<form method="POST" action="<?= URL; ?>#">
+<form method="POST" action="<?= URL; ?>panier/add/">
     <label for="commentaire">Commentaire : </label>
     <textarea id="commentaire" class="materialize-textarea"></textarea>
     <input type="hidden" name="note" id="note" value="-1">
@@ -95,4 +110,18 @@ Laisser un avis
         $('#note').val("1");
     });
 
+    $(".panier-add-submit").click(function(e){
+        e.preventDefault();
+        var modele = $(this).data('modele');
+        alert(modele);
+
+        var qte = $(".panier-add[data-modele=" + modele + "]").val();
+        console.log(qte);
+        var url = "<?= URL; ?>panier/add/";
+        var posting = $.post( url, { qte: qte, mod:modele, id_user:"<?= $_SESSION['id']; ?>", prod:"<?= $data['list'][0]->id; ?>"});
+        
+        posting.done(function( data ) {
+            alert('ok');
+        });
+    });
 </script>
