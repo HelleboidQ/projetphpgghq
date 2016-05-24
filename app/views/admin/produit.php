@@ -6,20 +6,41 @@
     <table class="highlight">
         <tr>
             <th>ID</th>
-            <th>Nom</th>
+            <th>Nom du produit</th>
+            <th>Modele</th>
             <th>Prix</th>
-            <th>Univers</th>
+            <th>Stock</th>
         </tr>
         <?php
-        foreach ($data['list'] as $u) {
+        foreach ($data['list'] as $k => $p) {
+            $nb_lignes = count($p['modeles']);
+
+            $i = 0;
+            foreach($p['modeles'] as $m)
+            {
+                $i++;
             ?>
             <tr>
-                <td><?= $u->id; ?></td>
-                <td>  <a href='/projetphpgghq/produits/detail/<?=$u->id . '-' . urlencode($u->nom) ?>'><?= $u->nom . " - Version " . $u->nomModele; ?></a></td>
-                <td><?= number_format($u->prix, 2, ',', ' '); ?>€</td>
-                <td><?= $u->nomUnivers; ?></td>
+                <?php echo ($i == 1) ? '<td rowspan="' . $nb_lignes . '">' . $p['obj']->id . '</td>' : ''; ?>
+                
+                <td><?= $p['obj']->nom; ?>
+                <td>  <a href='/projetphpgghq/produits/detail/<?=$u->id . '-' . urlencode($p['obj']->nom) ?>'><?= $p['obj']->nom . " : " . $m->nom; ?></a></td>
+                <td><?= number_format($m->prix, 2, ',', ' '); ?>€</td>
+                <td>
+                <?php
+                    if(is_null($m->stock))
+                    {
+                        echo '&#x221e;';
+                    }
+                    else
+                    {
+                        echo $m->stock;
+                    }
+                ?>
+                </td>
             </tr>
             <?php
+            }
         }
         ?>
     </table>

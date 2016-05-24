@@ -12,6 +12,7 @@ class Admin extends Controller {
     private $_univers;
     private $_news;
     private $_medias;
+    private $_modele;
 
     function __construct() {
         parent::__construct();
@@ -20,6 +21,7 @@ class Admin extends Controller {
         $this->_univers = new \Models\Univers();
         $this->_news = new \Models\News();
         $this->_medias = new \Models\Medias();
+        $this->_modele = new \Models\Modele();
     }
 
     public function index()
@@ -105,12 +107,22 @@ class Admin extends Controller {
     }
 
     public function produit() {
+        $data['list'] = array();
         $listeProduits = $this->_produits->findAll();
-        $data['list'] = $listeProduits;
+        foreach($listeProduits as $produit)
+        {
+            $data['list'][$produit->id] = array("obj" => $produit, "modeles" => array());
+            $modeles = $this->_modele->findByProduit($produit->id);
+            foreach($modeles as $m)
+            {
+                $data['list'][$produit->id]['modeles'][$m->id] = $m;
+            }
+        }
 
         $listeUnivers = $this->_univers->findAll();
         $data['univers'] = $listeUnivers;
 
+        var_dump($data['list']);
         View::render('admin/produit', $data);
     }
 
