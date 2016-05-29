@@ -20,6 +20,10 @@ class Produits extends \Core\Model {
         return $this->db->select('SELECT * FROM produits WHERE visible=1 AND  id_univers = ' . $univers_id . ' ORDER BY id DESC LIMIT 4');
     }
 
+    public function findById($id) {
+        return $this->db->select('SELECT * FROM produits WHERE id='.$id);
+    }
+
     public function getProduitById($id) {
         return $this->db->select('SELECT p.*, 
                                     u.nom as nomUnivers, 
@@ -30,6 +34,15 @@ class Produits extends \Core\Model {
                                     JOIN auteur a ON a.id_auteur=p.id_auteur
                                     JOIN modele m ON m.id_produit=p.id 
                                   WHERE p.id='.$id);
+    }
+
+    public function update($data,$where) {
+        $this->db->update(PREFIX.'produits',$data, $where);
+    }
+
+    public function create($data) {
+        $this->db->insert(PREFIX.'produits', $data);
+        return $this->db->lastInsertId('id');
     }
 
 }

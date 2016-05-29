@@ -121,8 +121,6 @@ class Admin extends Controller {
 
         $listeUnivers = $this->_univers->findAll();
         $data['univers'] = $listeUnivers;
-
-        var_dump($data['list']);
         View::render('admin/produit', $data);
     }
 

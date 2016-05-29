@@ -25,4 +25,8 @@ class Modele extends \Core\Model {
         $this->db->update(PREFIX.'modele',$data, $where);
     }
 
+    public function create($data) {
+        $this->db->insert(PREFIX.'modele', $data);
+        return $this->db->lastInsertId('id');
+    }
 }
