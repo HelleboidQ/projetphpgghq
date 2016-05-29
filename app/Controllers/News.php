@@ -16,6 +16,7 @@ namespace Controllers;
 
 use Core\Controller;
 use Core\View;
+use Helpers\Upload;
 
 class News extends Controller {
 
@@ -37,12 +38,11 @@ class News extends Controller {
         $id = $recupId[0];
 
         $liste = $this->_news->findByUnivers($id);
-        
-        
+
+
 
         $listeNews = array();
-        foreach($liste as $k => $l)
-        {
+        foreach ($liste as $k => $l) {
             $listeNews[$k]['news'] = $l;
             $listeNews[$k]['image'] = $this->_news->findNewsImage($l->id);
             $listeNews[$k]['image'] = $listeNews[$k]['image'][0];
@@ -67,7 +67,7 @@ class News extends Controller {
         $date = new \DateTime($news->date);
         $news->date = $date->format('d/m/Y \à H\hi');
         $data['news'] = $news;
-    
+
         $data['banner']['univers'] = $this->_univers->findById($news->id_univers);
 
         $data['image'] = $this->_news->findNewsImage($id);
@@ -78,8 +78,7 @@ class News extends Controller {
         $data['commentaires'] = array();
 
         $commentaires = $this->_commentaires->findByNews($id);
-        foreach($commentaires as $c)
-        {
+        foreach ($commentaires as $c) {
             $auteur = $this->_users->getUsersById($c->id_user);
             $auteur = $auteur[0];
             $date = new \DateTime($c->date);
@@ -89,27 +88,25 @@ class News extends Controller {
 
         $data['settings']['dontShowContainer'] = 1;
 
-        View::renderTemplate('header',$data);
-        View::renderTemplate('banner-mini',$data);
+        View::renderTemplate('header', $data);
+        View::renderTemplate('banner-mini', $data);
         View::render('news/detail', $data);
         View::renderTemplate('footer');
     }
 
-    public function new_news()
-    {
+    public function new_news() {
         $data['univers_en_cours'] = isset($_POST['id_univers']) ? $_POST['id_univers'] : null;
         $data['univers'] = $this->_univers->findAll();
         View::render('news/new', $data);
     }
 
-    public function create()
-    {
+    public function create() {
         $postdata = array(
-            'nom'           =>  $_POST['nom'],
-            'slug'          =>  '',                                 
-            'auteur'        =>  $_SESSION['id'],
-            'contenu'       =>  $_POST['contenu'],
-            'id_univers'    =>  $_POST['univers']
+            'nom' => $_POST['nom'],
+            'slug' => '',
+            'auteur' => $_SESSION['id'],
+            'contenu' => $_POST['contenu'],
+            'id_univers' => $_POST['univers']
         );
 
         $this->_news->create($postdata);
@@ -117,25 +114,35 @@ class News extends Controller {
         \Helpers\Url::previous();
     }
 
-    public function edit($id) 
-    {
+    public function edit($id) {
         $data['univers'] = $this->_univers->findAll();
         $data['news'] = $this->_news->findById($id);
         $data['news'] = $data['news'][0];
         View::render('news/edit', $data);
     }
 
-    public function update($id)
-    {
+    public function update($id) {
         $postdata = array(
-            'nom'        =>  $_POST['nom'],                                
-            'contenu'       =>  $_POST['contenu']                      
+            'nom' => $_POST['nom'],
+            'contenu' => $_POST['contenu']
         );
 
         $where = array('id' => $id);
         $this->_news->update($postdata, $where);
 
         \Helpers\Url::previous();
+    }
+
+    public function uploadEditor() {
+
+        $config['upload_path'] = "app/templates/default/img/";
+        $config['allowed_types'] = "*";
+        $upload = new \Helpers\Upload($config);
+        if ($upload->do_upload('img')) {
+            echo DIR . "app/templates/default/img/" . $upload->file_name;
+        } else {
+            echo "   " . getcwd();
+        }
     }
 
 }

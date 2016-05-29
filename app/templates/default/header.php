@@ -26,6 +26,8 @@ $hooks = Hooks::get();
         Assets::css([
             '//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css',
             URL . 'app/templates/default/css/style.css',
+            URL . 'app/templates/default/css/materialNote.css',
+            URL . 'app/templates/default/css/materialNote.css.map',
             'https://fonts.googleapis.com/css?family=Montserrat:400,700'
         ]);
 
@@ -35,7 +37,10 @@ $hooks = Hooks::get();
 
         <?php
         Assets::js([
-            Url::templatePath() . 'js/jquery.js'
+            Url::templatePath() . 'js/jquery.js',
+            Url::templatePath() . 'js/ckMaterializeOverrides.js',
+            Url::templatePath() . 'js/materialNote.js',
+            Url::templatePath() . 'js/materialNote.min.js'
         ]);
         ?>
         <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/Core/Config.php           ?></title>
@@ -81,7 +86,7 @@ $hooks = Hooks::get();
             </li>
         </ul>
         <ul id="dropdown4" class="dropdown-content">
-           <li>
+            <li>
                 <a href="<?php echo URL; ?>accueil/index/3-jeuxvideo">Accueil</a>
             </li>
             <li>
@@ -92,7 +97,7 @@ $hooks = Hooks::get();
             </li>
         </ul>
         <ul id="dropdown5" class="dropdown-content">
-           <li>
+            <li>
                 <a href="<?php echo URL; ?>accueil/index/4-musique">Accueil</a>
             </li>
             <li>
@@ -103,7 +108,7 @@ $hooks = Hooks::get();
             </li>
         </ul>
         <ul id="dropdown6" class="dropdown-content">
-          <li>
+            <li>
                 <a href="<?php echo URL; ?>accueil/index/5-bd">Accueil</a>
             </li>
             <li>
@@ -141,7 +146,7 @@ $hooks = Hooks::get();
                 if (\Helpers\Session::get('user_logged_in') == true) {
                     ?>
                     <ul class="right hide-on-med-and-down">
-                       
+
                         <li>
                             <a href="<?php echo URL; ?>users/panier">Mon panier</a>
                         </li> <li>
@@ -231,10 +236,10 @@ $hooks = Hooks::get();
             </div>
         </nav>
 
-        <?php if(!isset($data['settings']['dontShowContainer']))
-        {
+        <?php
+        if (!isset($data['settings']['dontShowContainer'])) {
             ?>
-                <div class="container"> 
-            <?php
-        }
-        ?>
+            <div class="container"> 
+                <?php
+            }
+            ?>
