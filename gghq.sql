@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 08 Mai 2016 à 13:28
+-- Généré le :  Lun 30 Mai 2016 à 20:21
 -- Version du serveur :  5.7.9
 -- Version de PHP :  7.0.0
 
@@ -70,9 +70,20 @@ CREATE TABLE IF NOT EXISTS `commande` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_users` int(11) NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `id_adresse` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_users` (`id_users`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `commande`
+--
+
+INSERT INTO `commande` (`id`, `id_users`, `time`, `id_adresse`) VALUES
+(13, 7, '2016-05-30 19:30:27', 6),
+(14, 7, '2016-05-30 20:13:38', 6),
+(15, 7, '2016-05-30 20:13:52', 6),
+(16, 7, '2016-05-30 20:14:20', 6);
 
 -- --------------------------------------------------------
 
@@ -85,11 +96,34 @@ CREATE TABLE IF NOT EXISTS `commande_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_commande` int(11) NOT NULL,
   `id_produit` int(11) NOT NULL,
-  `prix` int(11) NOT NULL,
+  `prix` float(5,2) NOT NULL,
+  `quantite` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_commande` (`id_commande`),
   KEY `id_produit` (`id_produit`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `commande_detail`
+--
+
+INSERT INTO `commande_detail` (`id`, `id_commande`, `id_produit`, `prix`, `quantite`) VALUES
+(24, 15, 9, 33.00, 1),
+(23, 15, 2, 25.00, 21),
+(22, 15, 3, 20.00, 3),
+(21, 15, 1, 10.00, 4),
+(20, 14, 9, 33.00, 1),
+(19, 14, 2, 25.00, 21),
+(18, 14, 3, 20.00, 3),
+(17, 14, 1, 10.00, 4),
+(16, 13, 9, 33.00, 1),
+(15, 13, 2, 25.00, 21),
+(14, 13, 3, 20.00, 3),
+(13, 13, 1, 10.00, 4),
+(25, 16, 1, 10.00, 4),
+(26, 16, 3, 20.00, 3),
+(27, 16, 2, 25.00, 21),
+(28, 16, 9, 33.00, 1);
 
 -- --------------------------------------------------------
 
@@ -146,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `modele` (
   `prix` float(5,2) NOT NULL,
   `stock` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `modele`
@@ -155,7 +189,11 @@ CREATE TABLE IF NOT EXISTS `modele` (
 INSERT INTO `modele` (`id`, `nom`, `id_produit`, `prix`, `stock`) VALUES
 (1, 'dématérialisé', 1, 10.00, NULL),
 (2, 'Blu-ray', 1, 25.00, 7),
-(3, 'DVD', 1, 20.00, 19);
+(3, 'DVD', 1, 20.00, 18),
+(6, 'Origins Edition', 3, 60.00, 100),
+(7, 'Classique, dématérialisé', 3, 40.00, 0),
+(8, 'Classique, boite', 3, 40.00, 12),
+(9, 'Modèle 4', 3, 33.00, 9);
 
 -- --------------------------------------------------------
 
@@ -173,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `contenu` text NOT NULL,
   `id_univers` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `news`
@@ -185,7 +223,9 @@ INSERT INTO `news` (`id`, `slug`, `nom`, `auteur`, `date`, `contenu`, `id_univer
 (3, 'news-test-jv', '2e news JV', 7, '2016-04-11 15:13:05', 'Test d''une news Jeux Vidéo', 3),
 (4, 'news-test-jv', '3e news JV', 7, '2016-04-11 15:13:05', 'Test d''une news Jeux Vidéo', 3),
 (5, 'news-test-jv', '4e news JV', 7, '2016-04-11 15:13:05', 'Test d''une news Jeux Vidéo', 3),
-(6, 'news-test-jv', '5e news JV', 7, '2016-04-11 15:13:05', '<p>Test d&#39;une news Jeux Vid&eacute;os</p>\r\n', 3);
+(6, 'news-test-jv', '5e news JV', 7, '2016-04-11 15:13:05', '<p>Test d&#39;une news Jeux Vid&eacute;os</p>\r\n', 3),
+(7, '', '', 7, '2016-05-30 19:11:30', '', 1),
+(8, '', '', 7, '2016-05-30 19:11:37', '<span style="font-weight: bold;">gfggd</span>', 1);
 
 -- --------------------------------------------------------
 
@@ -229,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `panier` (
   PRIMARY KEY (`id`),
   KEY `id_produit` (`id_produit`),
   KEY `id_users` (`id_users`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `panier`
@@ -237,8 +277,9 @@ CREATE TABLE IF NOT EXISTS `panier` (
 
 INSERT INTO `panier` (`id`, `id_users`, `time`, `id_produit`, `id_modele`, `quantite`) VALUES
 (8, 7, '2016-05-08 13:28:30', 1, 1, 4),
-(7, 7, '2016-05-08 13:27:05', 1, 3, 2),
-(6, 7, '2016-05-08 13:28:15', 1, 2, 21);
+(7, 7, '2016-05-30 16:35:17', 1, 3, 3),
+(6, 7, '2016-05-08 13:28:15', 1, 2, 21),
+(9, 7, '2016-05-30 16:42:51', 3, 9, 1);
 
 -- --------------------------------------------------------
 
@@ -259,14 +300,16 @@ CREATE TABLE IF NOT EXISTS `produits` (
   `stock` int(11) NOT NULL DEFAULT '0',
   `visible` tinyint(2) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `produits`
 --
 
 INSERT INTO `produits` (`id`, `nom`, `id_univers`, `titre`, `annee`, `id_auteur`, `type`, `lien_ws`, `stock`, `visible`) VALUES
-(1, 'Batman vs Superman', 1, 'Batman vs Superman', 2016, 1, 'action, aventure', 'tt2975590', 0, 1);
+(1, 'Batman vs Superman', 1, 'Batman vs Superman', 2015, 1, '', '', 0, 1),
+(2, 'test2', 1, 'test2', 2016, 7, 'typeosef', 'fgdgdg', 0, 1),
+(3, 'Overwatch', 3, 'Overwatch', 2016, 7, '', '', 0, 1);
 
 -- --------------------------------------------------------
 
