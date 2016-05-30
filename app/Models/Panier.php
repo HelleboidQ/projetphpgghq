@@ -10,9 +10,8 @@ class Panier extends \Core\Model {
 
     public function findByUser($id) {
         return $this->db->select('SELECT * 
-            FROM panier pa 
-            JOIN produits AS pr ON `pr`.`id` = `pa`.`id_produit`
-            WHERE pa.id_users = :id', array(':id' => $id));
+            FROM panier
+            WHERE id_users = :id', array(':id' => $id));
     }
 
     public function findByUserAndModele($id,$modele) {
@@ -26,6 +25,11 @@ class Panier extends \Core\Model {
 
     public function update($data,$where) {
         $this->db->update(PREFIX.'panier',$data, $where);
+    }
+
+    public function delete($data)
+    {
+        $this->db->delete(PREFIX.'panier', $data);
     }
 
 }

@@ -11,6 +11,9 @@ class Users extends Controller {
     private $_panier;
     private $_univers;
     private $_modele;
+    private $_produit;
+    private $_commandes;
+    private $_adresses;
 
     function __construct() {
         parent::__construct();
@@ -18,6 +21,9 @@ class Users extends Controller {
         $this->_panier = new \Models\Panier();
         $this->_univers = new \Models\Univers();
         $this->_modele = new \Models\Modele();
+        $this->_produit = new \Models\Produits();
+        $this->_commandes = new \Models\Commandes();
+        $this->_adresses = new \Models\Adresses();
     }
 
     public function update() {
@@ -57,6 +63,43 @@ class Users extends Controller {
         View::renderTemplate('header');
         View::render('login/panier', $data);
         View::renderTemplate('footer');
+    }
+
+    public function commande()
+    {
+        $panier = array();
+        $panier_user = $this->_panier->findByUser($_SESSION['id']);
+
+        $adresses = $this->_adresses->findByUserDefault($_SESSION['id']);
+
+        foreach($panier_user as $article)
+        {
+            $produit_detail = $this->_produit->findById($article->id_produit);
+            $modele_detail = $this->_modele->findById($article->id_modele);
+
+            $panier[] = array('id_panier' => $article->id, 'article' => $produit_detail[0], 'modele' => $modele_detail[0], 'quantite' => $article->quantite);
+        }
+
+
+        
+        $dataCommande = array('id_users' => $_SESSION['id'], 'id_adresse' => $adresses[0]->id);
+        $commandeID = $this->_commandes->create($dataCommande);
+
+        // Supprimer des articles du panier
+        foreach($panier as $p)
+        {
+            //$data = array('id' => $p['id']);
+            //$this->_panier->delete($data);
+
+            //$quantite = $p['modele']->quantite;
+            echo $p['quantite'];
+            echo '<hr>';
+
+            $data2 = array('id_produit' => $p['modele']->id, 'id_commande' => $commandeID, 'prix' => $p['modele']->prix, 'quantite' => $p['quantite']); // id produit mais il s'agit bien du modèle (lié au produit de toute façon)
+            $this->_commandes->ajouterProduit($data2);
+        }
+
+
     }
 
 }

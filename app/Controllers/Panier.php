@@ -23,7 +23,6 @@ class Panier extends Controller {
         $qte = $_POST['qte'];
 
         $panier = $this->_panier->findByUserAndModele($_SESSION['id'],$_POST['mod']);
-        var_dump($panier);
 
         $modele = $this->_modele->findById($_POST['mod']);
         $stock = $modele[0]->stock;
@@ -47,7 +46,13 @@ class Panier extends Controller {
                     );
                     $where2 = array('id' => $_POST['mod']);
                     $this->_modele->update($postdata2,$where2);
+                    echo json_encode('Panier vide, quantite ok');
                 }
+
+            }
+            else
+            {
+                echo json_encode('Panier vide, quantite non valide');
             }            
         }
         else
@@ -71,6 +76,7 @@ class Panier extends Controller {
                     );
                     $where2 = array('id' => $_POST['mod']);
                     $this->_modele->update($postdata2,$where2);
+                    echo json_encode('Mise à jour stock');
                 }
             }
         }        

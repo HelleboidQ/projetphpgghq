@@ -20,6 +20,11 @@ class Users extends \Core\Model {
         return $this->db->select('SELECT * FROM users WHERE id = :id', array(':id'  => $id));
     }
 
+    public function findById($id)
+    {
+        return $this->getUsersById($id);
+    }
+
     public function insertUsers($postdata) {
         $pseudoExist = $this->db->select("SELECT * FROM users WHERE pseudo = :pseudo", array(':pseudo' => $postdata['pseudo']));
 

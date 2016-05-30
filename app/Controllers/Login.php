@@ -81,8 +81,8 @@ class Login extends Controller {
 
                     foreach($listeRaw as $produit)
                     {
-                        $liste_commandes[$produit->id_commande]['infos'] = array('date' => $produit->time);
-                        $liste_commandes[$produit->id_commande]['produits'][] = array('nom' => $produit->nom, 'prix' => $produit->prix);
+                        $liste_commandes[$produit->idcommande]['infos'] = array('date' => $produit->time);
+                        $liste_commandes[$produit->idcommande]['produits'][] = array('nom' => $produit->pronom . ' - ' . $produit->monom, 'prix' => $produit->prix);
                     }
 
                     $data['reponse']['listeCommandes'] = $liste_commandes;

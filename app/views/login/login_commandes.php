@@ -12,6 +12,9 @@
 							<div class="collapsible-body">
 								<div class="row">
 									<div class="col s12">
+										<a href="<?= URL; ?>commandes/imprimer/<?= $k; ?>" class="btn">Imprimer</a>
+									</div>
+									<div class="col s12">
 										<table>
 											<thead>
 												<tr>
@@ -24,6 +27,7 @@
 
 												<?php foreach($commande['produits'] as $p)
 												{
+
 													?>
 														<tr>
 															<td><?= $p['nom']; ?></td>

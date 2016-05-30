@@ -34,7 +34,7 @@ if (sizeof($data["panier"]) == 0) {
 	<br>
 	Total : <b><?= number_format ($total_general, 2, ',', " "); ?>€</b>
 	
-
+	<a href="<?= URL; ?>users/commande" class="btn">Commander</a>
     <?php
 }
 ?>

@@ -15,7 +15,10 @@ if ($data['list'][0]->lien_ws != "") {
 
  */
   var_dump($data['list']);
+
 ?>
+
+<?= $data['list'][0]->id; ?>
 <div class="col-md-12">
     <h1><?= $data['list'][0]->nom ?></h1>
     <div class="col-md-6"> 
@@ -121,7 +124,7 @@ Laisser un avis
         var posting = $.post( url, { qte: qte, mod:modele, id_user:"<?= $_SESSION['id']; ?>", prod:"<?= $data['list'][0]->id; ?>"});
         
         posting.done(function( data ) {
-            alert('ok');
+            console.log(data);
         });
     });
 </script>

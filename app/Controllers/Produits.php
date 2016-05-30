@@ -36,7 +36,7 @@ class Produits extends Controller {
         $recupId = explode("-", $id);
         $id = $recupId[0];
 
-        $produitDetail = $this->_produits->getProduitById($id);
+        $produitDetail = $this->_produits->findById($id);
         $data['list'] = $produitDetail;
 
         $modeles = $this->_modele->findByProduit($id);
