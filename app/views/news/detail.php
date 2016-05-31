@@ -3,7 +3,7 @@
     <p>
         Par  <?= $data['auteur']->pseudo ?> le  <?= $data['news']->date ?> 
     </p>
-    <img alt="<?= $data['news']->nom ?>" src="<?= URL . "app/views/" . $data['image']->url ?>"> 
+    <img class="responsive-img materialboxed" alt="<?= $data['news']->nom ?>" src="<?= URL . "app/views/" . $data['image']->url ?>"> 
     <p>
         <?= $data['news']->contenu ?>
     </p>

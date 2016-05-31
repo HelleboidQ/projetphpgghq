@@ -25,20 +25,33 @@
         </a>
     </div>
     <div class="tile-block tile-35">
-        <a href='/projetphpgghq/news/detail/<?= $data['news'][3]['news']->id . '-' . urlencode($data['news'][3]['news']->nom) ?>'>
-            <div class="tile" style="background-image:url(<?= URL . 'app/views/' . $data['news'][3]['image']->url; ?>);">
-                <div class="overlay">
-                    <h5><?= $data['news'][3]['news']->nom; ?></h5>
-                </div>
-            </div>
-        </a>
-        <a href='/projetphpgghq/news/detail/<?= $data['news'][4]['news']->id . '-' . urlencode($data['news'][4]['news']->nom) ?>'>
-            <div class="tile" style="background-image:url(<?= URL . 'app/views/' . $data['news'][4]['image']->url; ?>);">
-                <div class="overlay">
-                    <h5><?= $data['news'][4]['news']->nom; ?></h5>
-                </div>
-            </div>
-        </a>
+        <?php if(!is_null($data['news'][3]))
+        {
+            ?>
+                <a href='/projetphpgghq/news/detail/<?= $data['news'][3]['news']->id . '-' . urlencode($data['news'][3]['news']->nom) ?>'>
+                    <div class="tile" style="background-image:url(<?= URL . 'app/views/' . $data['news'][3]['image']->url; ?>);">
+                        <div class="overlay">
+                            <h5><?= $data['news'][3]['news']->nom; ?></h5>
+                        </div>
+                    </div>
+                </a>
+            <?php
+        }
+        ?>
+        
+        <?php if(!is_null($data['news'][4]))
+        {
+            ?>
+                <a href='/projetphpgghq/news/detail/<?= $data['news'][4]['news']->id . '-' . urlencode($data['news'][4]['news']->nom) ?>'>
+                    <div class="tile" style="background-image:url(<?= URL . 'app/views/' . $data['news'][4]['image']->url; ?>);">
+                        <div class="overlay">
+                            <h5><?= $data['news'][4]['news']->nom; ?></h5>
+                        </div>
+                    </div>
+                </a>
+            <?php
+        }
+        ?>
     </div>
 </div>
 

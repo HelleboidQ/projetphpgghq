@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 30 Mai 2016 à 20:21
+-- Généré le :  Mar 31 Mai 2016 à 20:09
 -- Version du serveur :  5.7.9
 -- Version de PHP :  7.0.0
 
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `commande` (
   `id_adresse` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_users` (`id_users`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `commande`
@@ -83,7 +83,11 @@ INSERT INTO `commande` (`id`, `id_users`, `time`, `id_adresse`) VALUES
 (13, 7, '2016-05-30 19:30:27', 6),
 (14, 7, '2016-05-30 20:13:38', 6),
 (15, 7, '2016-05-30 20:13:52', 6),
-(16, 7, '2016-05-30 20:14:20', 6);
+(16, 7, '2016-05-30 20:14:20', 6),
+(17, 7, '2016-05-31 17:23:26', 6),
+(18, 7, '2016-05-31 17:24:18', 6),
+(19, 7, '2016-05-31 17:24:31', 6),
+(20, 7, '2016-05-31 17:29:12', 6);
 
 -- --------------------------------------------------------
 
@@ -101,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `commande_detail` (
   PRIMARY KEY (`id`),
   KEY `id_commande` (`id_commande`),
   KEY `id_produit` (`id_produit`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `commande_detail`
@@ -123,7 +127,20 @@ INSERT INTO `commande_detail` (`id`, `id_commande`, `id_produit`, `prix`, `quant
 (25, 16, 1, 10.00, 4),
 (26, 16, 3, 20.00, 3),
 (27, 16, 2, 25.00, 21),
-(28, 16, 9, 33.00, 1);
+(28, 16, 9, 33.00, 1),
+(29, 17, 1, 10.00, 4),
+(30, 17, 3, 20.00, 3),
+(31, 17, 2, 25.00, 21),
+(32, 17, 9, 33.00, 1),
+(33, 18, 1, 10.00, 4),
+(34, 18, 3, 20.00, 3),
+(35, 18, 2, 25.00, 21),
+(36, 18, 9, 33.00, 1),
+(37, 19, 1, 10.00, 4),
+(38, 19, 3, 20.00, 3),
+(39, 19, 2, 25.00, 21),
+(40, 19, 9, 33.00, 1),
+(41, 20, 2, 25.00, 1);
 
 -- --------------------------------------------------------
 
@@ -180,20 +197,23 @@ CREATE TABLE IF NOT EXISTS `modele` (
   `prix` float(5,2) NOT NULL,
   `stock` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `modele`
 --
 
 INSERT INTO `modele` (`id`, `nom`, `id_produit`, `prix`, `stock`) VALUES
-(1, 'dématérialisé', 1, 10.00, NULL),
-(2, 'Blu-ray', 1, 25.00, 7),
+(1, 'Dématérialisé', 1, 10.00, NULL),
+(2, 'Blu-ray', 1, 25.00, 6),
 (3, 'DVD', 1, 20.00, 18),
 (6, 'Origins Edition', 3, 60.00, 100),
 (7, 'Classique, dématérialisé', 3, 40.00, 0),
 (8, 'Classique, boite', 3, 40.00, 12),
-(9, 'Modèle 4', 3, 33.00, 9);
+(9, 'Modèle 4', 3, 33.00, 9),
+(10, 'Dématérialisé', 4, 15.00, NULL),
+(11, 'CD', 4, 10.00, 102),
+(12, 'Vinyl : Hipster Edition', 4, 20.00, 22);
 
 -- --------------------------------------------------------
 
@@ -211,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `contenu` text NOT NULL,
   `id_univers` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `news`
@@ -224,8 +244,15 @@ INSERT INTO `news` (`id`, `slug`, `nom`, `auteur`, `date`, `contenu`, `id_univer
 (4, 'news-test-jv', '3e news JV', 7, '2016-04-11 15:13:05', 'Test d''une news Jeux Vidéo', 3),
 (5, 'news-test-jv', '4e news JV', 7, '2016-04-11 15:13:05', 'Test d''une news Jeux Vidéo', 3),
 (6, 'news-test-jv', '5e news JV', 7, '2016-04-11 15:13:05', '<p>Test d&#39;une news Jeux Vid&eacute;os</p>\r\n', 3),
-(7, '', '', 7, '2016-05-30 19:11:30', '', 1),
-(8, '', '', 7, '2016-05-30 19:11:37', '<span style="font-weight: bold;">gfggd</span>', 1);
+(7, 'foals-festivals', 'Foals : les festivals de cet été !', 7, '2016-05-30 19:11:30', '<p>Test d&#39;une news Musique</p>', 4),
+(8, 'zombi-film', 'Zombillénium : Le film pour cet hiver !', 7, '2016-05-30 19:11:37', '<span style="font-weight: bold;">gfggd</span>', 5),
+(9, 'overwatch-depart-canon', 'Overwatch : Un départ canon !', 7, '2016-05-30 19:11:37', '<span style="font-weight: bold;">Texte de la news</span>', 3),
+(10, 'the-100-final', 'The 100 Saison 3 : Un final inattendu...', 7, '2016-05-30 19:11:37', '<span style="font-weight: bold;">Texte de la news</span>', 2),
+(11, 'rick-des-nouvelles', 'Rick & Morty saison 3 : Premier teaser !', 7, '2016-05-30 19:11:37', '<span style="font-weight: bold;">Texte de la news</span>', 2),
+(12, 'rip-in-peace', '[Exclu] Son personnage tué, Peter Dinklage remplace Passe-Partout cet été au Fort !', 7, '2016-05-30 19:11:37', '<span style="font-weight: bold;">Texte de la news</span>', 2),
+(13, 'rip-in-peace', 'Les Simpson : La Fox rempile jusqu''à la saison 33 !', 7, '2016-05-30 19:11:37', '<span style="font-weight: bold;">Texte de la news</span>', 2),
+(14, 'rip-in-peace', 'Alt-J sort "Live At Red Rocks", son 1er album Live', 7, '2016-05-30 19:11:37', '<span style="font-weight: bold;">Texte de la news</span>', 4),
+(15, 'angouleme-1ers-auteurs', 'Festival d''Angoulême 2017 : Les premières rumeurs...', 7, '2016-05-30 19:11:37', '<span style="font-weight: bold;">Texte de la news</span>', 5);
 
 -- --------------------------------------------------------
 
@@ -239,7 +266,7 @@ CREATE TABLE IF NOT EXISTS `news_image` (
   `id_news` int(11) NOT NULL,
   `url` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `news_image`
@@ -250,7 +277,16 @@ INSERT INTO `news_image` (`id`, `id_news`, `url`) VALUES
 (2, 3, '/img/Star-Wars-7-New-Banner.jpg'),
 (3, 4, '/img/minecraft.jpg'),
 (4, 6, '/img/trevor.png'),
-(5, 5, '/img/1kki.png');
+(5, 5, '/img/1kki.png'),
+(6, 7, 'img/foals.jpeg'),
+(7, 8, 'img/zombillenium.jpg'),
+(8, 9, 'img/overwatch.jpg'),
+(9, 10, 'img/the100.png'),
+(10, 11, 'img/rick.jpg'),
+(11, 12, 'img/tyrion.jpg'),
+(12, 13, 'img/simpson.jpg'),
+(13, 14, 'img/altj.jpg'),
+(14, 15, 'img/angouleme.jpg');
 
 -- --------------------------------------------------------
 
@@ -269,17 +305,14 @@ CREATE TABLE IF NOT EXISTS `panier` (
   PRIMARY KEY (`id`),
   KEY `id_produit` (`id_produit`),
   KEY `id_users` (`id_users`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `panier`
 --
 
 INSERT INTO `panier` (`id`, `id_users`, `time`, `id_produit`, `id_modele`, `quantite`) VALUES
-(8, 7, '2016-05-08 13:28:30', 1, 1, 4),
-(7, 7, '2016-05-30 16:35:17', 1, 3, 3),
-(6, 7, '2016-05-08 13:28:15', 1, 2, 21),
-(9, 7, '2016-05-30 16:42:51', 3, 9, 1);
+(11, 7, '2016-05-31 18:10:20', 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -300,16 +333,17 @@ CREATE TABLE IF NOT EXISTS `produits` (
   `stock` int(11) NOT NULL DEFAULT '0',
   `visible` tinyint(2) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `produits`
 --
 
 INSERT INTO `produits` (`id`, `nom`, `id_univers`, `titre`, `annee`, `id_auteur`, `type`, `lien_ws`, `stock`, `visible`) VALUES
-(1, 'Batman vs Superman', 1, 'Batman vs Superman', 2015, 1, '', '', 0, 1),
+(1, 'Batman vs Superman', 1, 'Batman vs Superman', 2015, 6, '', '', 0, 1),
 (2, 'test2', 1, 'test2', 2016, 7, 'typeosef', 'fgdgdg', 0, 1),
-(3, 'Overwatch', 3, 'Overwatch', 2016, 7, '', '', 0, 1);
+(3, 'Overwatch', 3, 'Overwatch', 2016, 7, '', '', 0, 1),
+(4, 'L''attrape-rêves', 4, 'L''attrape-rêves', 2016, 7, '', '', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -323,7 +357,15 @@ CREATE TABLE IF NOT EXISTS `produits_image` (
   `id_produit` int(11) NOT NULL,
   `url` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `produits_image`
+--
+
+INSERT INTO `produits_image` (`id`, `id_produit`, `url`) VALUES
+(1, 1, 'img/test.jpg'),
+(2, 4, 'img/christophemae1.jpg');
 
 -- --------------------------------------------------------
 
@@ -441,8 +483,8 @@ CREATE TABLE IF NOT EXISTS `users_adresse` (
 
 INSERT INTO `users_adresse` (`id`, `id_users`, `defaut`, `numero`, `cplt_numero`, `rue`, `cp`, `ville`, `facturation`, `livraison`) VALUES
 (3, 7, 0, 16, 'TER', 'Route de Mers', '76260', 'Eu', 1, 1),
-(5, 7, 0, 25, 'BIS', 'Rue de test', '80000', 'AMIENS', 0, 0),
-(6, 7, 1, 22, '', 'rue de test', '80000', 'Amiens', 0, 0);
+(5, 7, 1, 25, 'BIS', 'Rue de test', '80000', 'AMIENS', 0, 0),
+(6, 7, 0, 22, '', 'rue de test', '80000', 'Amiens', 0, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
