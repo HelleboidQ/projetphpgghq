@@ -14,50 +14,52 @@ if ($data['list'][0]->lien_ws != "") {
   print_r($data['list']);
 
  */
-  var_dump($data['list']);
 
 ?>
 
-<?= $data['list'][0]->id; ?>
-<div class="col-md-12">
+<div class="col s12">
     <h1><?= $data['list'][0]->nom ?></h1>
-    <div class="col-md-6"> 
-        Année : <?= $data['list'][0]->annee ?> 
-        <br />
-        Genre : <?= $data['list'][0]->type ?> 
-        <br />
-        Auteur : <?= $data['list'][0]->nomAuteur ?> 
-    </div>
-    <br><br>
-    <div class="col-md-6">
-        <?php
-        foreach($data['modeles'] as $m)
-        {
-            echo $m->nom . ' / ' . $m->prix . '€';
+    <div class="row">
+        <div class="col s6"> 
+            <img class="materialboxed" src="<?= URL . 'app/views/' . $data['image'][0]->url;?>">
 
-            if($m->stock === 0)
+            Année : <?= $data['list'][0]->annee ?> 
+            <br />
+            Genre : <?= $data['list'][0]->type ?> 
+            <br />
+            Auteur : <?= $data['list'][0]->nomAuteur ?> 
+        </div>
+        <div class="col s6">
+            <?php
+            foreach($data['modeles'] as $m)
             {
-                echo 'Épuisé<br>';
-            }
-            else 
-            {
-                ?>
-                 <form class="col s12" class="form-panier" data-modele="<?= $m->id; ?>" action="<?= URL; ?>panier/add/">
-                    <div class="row">
-                        <div class="input-field col s6">
-                          <input class="panier-add" data-modele="<?= $m->id; ?>" min="1" max="<?php echo ($m->stock == null) ? '40' : $m->stock; ?>" type="number" class="validate" value="1">
-                          <label for="first_name">Quantité</label>
+                echo $m->nom . ' / ' . $m->prix . '€';
+
+                if($m->stock === 0)
+                {
+                    echo 'Épuisé<br>';
+                }
+                else 
+                {
+                    ?>
+                     <form class="col s12" class="form-panier" data-modele="<?= $m->id; ?>" action="<?= URL; ?>panier/add/">
+                        <div class="row">
+                            <div class="input-field col s9">
+                              <input class="panier-add" data-modele="<?= $m->id; ?>" min="1" max="<?php echo ($m->stock == null) ? '40' : $m->stock; ?>" type="number" class="validate" value="1">
+                              <label for="first_name">Quantité</label>
+                            </div>
+                            <button class="col s3 panier-add-submit btn waves-effect waves-light" data-modele="<?= $m->id; ?>" type="submit" name="action">Panier</button>
                         </div>
-                    </div>
-                    <button class="panier-add-submit btn waves-effect waves-light" data-modele="<?= $m->id; ?>" type="submit" name="action">Ajouter au panier</button>
-                </form>
-                <br>
-                <?php
+                        
+                    </form>
+                    <br>
+                    <?php
+                }
             }
-        }
 
-        
-        ?>
+            
+            ?>
+        </div>
     </div>
 </div>
 <img alt="<?= $data['list'][0]->nom ?>" src="<?= $data['spotrate']->Poster ?>">

@@ -39,10 +39,11 @@ class Produits extends Controller {
         $produitDetail = $this->_produits->findById($id);
         $data['list'] = $produitDetail;
 
+        $image = $this->_produits->findProduitImage($id);
+        $data['image'] = $image;
+
         $modeles = $this->_modele->findByProduit($id);
         $data['modeles'] = $modeles;
-
-        var_dump($data['modeles']);
 
         $comDetail = $this->_commentaire->findByProduit($id);
         $data['com'] = $comDetail;

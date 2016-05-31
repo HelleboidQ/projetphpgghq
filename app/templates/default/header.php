@@ -138,7 +138,9 @@ $hooks = Hooks::get();
                 if (\Helpers\Session::get('admin') == "1") {
                     ?>
                     <ul class="right hide-on-med-and-down">
-                        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Admin<i class="material-icons right">arrow_drop_down</i></a></li> 
+                        <li>
+                            <a href="<?php echo URL; ?>admin">Administration</a>
+                        </li>
                     </ul>
 
                     <?php
@@ -212,7 +214,9 @@ $hooks = Hooks::get();
                 if (\Helpers\Session::get('user_logged_in') == true) {
                     ?>
                     <ul class="right hide-on-med-and-down">
-                        <li><a class="dropdown-button" href="#!" data-activates="dropdown7">Mon profil<i class="material-icons right">arrow_drop_down</i></a></li> 
+                        <li>
+                            <a href="<?php echo URL; ?>login/compte?action=infos">Mon profil</a>
+                        </li>
                     </ul>
                 <?php }
                 ?>

@@ -18,6 +18,10 @@ use Core\View;
  */
 class Welcome extends Controller
 {
+    private $_news;
+    private $_users;
+    private $_produits;
+
     /**
      * Call the parent construct.
      */
@@ -25,6 +29,10 @@ class Welcome extends Controller
     {
         parent::__construct();
         $this->language->load('Welcome');
+
+        $this->_news = new \Models\News();
+        $this->_produits = new \Models\Produits();
+        $this->_users = new \Models\Users();
     }
 
     /**
@@ -32,8 +40,31 @@ class Welcome extends Controller
      */
     public function index()
     {
-        $data['title'] = $this->language->get('welcome_text');
-        $data['welcome_message'] = $this->language->get('welcome_message');
+        $liste = $this->_news->findAllLast(5);
+        $listeNews = array();
+        foreach ($liste as $k => $l) {
+            $listeNews[$k]['news'] = $l;
+            $listeNews[$k]['image'] = $this->_news->findNewsImage($l->id);
+            $listeNews[$k]['image'] = $listeNews[$k]['image'][0];
+            $listeNews[$k]['auteur'] = $this->_users->getUsersById($l->auteur);
+            $listeNews[$k]['auteur'] = $listeNews[$k]['auteur'][0];
+        }
+
+        $data['news'] = $listeNews;
+
+        $liste2 = $this->_produits->findAllLast(5);
+        $listeProduits = array();
+        foreach ($liste2 as $k => $l) {
+            $listeProduits[$k]['produit'] = $l;
+            $listeProduits[$k]['image'] = $this->_produits->findProduitImage($l->id);
+            $listeProduits[$k]['image'] = $listeProduits[$k]['image'][0];
+            $listeProduits[$k]['auteur'] = $this->_users->getUsersById($l->id_auteur);
+            $listeProduits[$k]['auteur'] = $listeProduits[$k]['auteur'][0];
+        }
+
+        $data['produits'] = $listeProduits;
+
+
 
         View::renderTemplate('header', $data);
         View::render('welcome/welcome', $data);

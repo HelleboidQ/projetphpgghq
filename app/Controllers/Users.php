@@ -52,9 +52,11 @@ class Users extends Controller {
         foreach($panier_raw as $p)
         {
             $panier[$p->id_modele] = array('produit' => array(), 'stock' => $p->quantite);
-            $detail_univers = $this->_univers->findById($p->id_univers);
+            
             $detail_modeles = $this->_modele->findById($p->id_modele);
-            $detail_produit = array('id' => $p->id, 'nom' => $p->nom, 'univers' => $detail_univers[0], 'modele' => $detail_modeles[0]);
+            $produit = $this->_produit->findById($p->id_produit);
+            $detail_univers = $this->_univers->findById($produit[0]->id_univers);
+            $detail_produit = array('id' => $produit[0]->id, 'nom' => $produit[0]->nom, 'univers' => $detail_univers[0], 'modele' => $detail_modeles[0]);
             $panier[$p->id_modele]['produit'] = $detail_produit;
         }
 
@@ -88,12 +90,14 @@ class Users extends Controller {
         // Supprimer des articles du panier
         foreach($panier as $p)
         {
-            //$data = array('id' => $p['id']);
-            //$this->_panier->delete($data);
+            var_dump($p);
+
+            $data = array('id' => $p['id_panier']);
+            $this->_panier->delete($data);
 
             //$quantite = $p['modele']->quantite;
-            echo $p['quantite'];
-            echo '<hr>';
+            //echo $p['quantite'];
+            //echo '<hr>';
 
             $data2 = array('id_produit' => $p['modele']->id, 'id_commande' => $commandeID, 'prix' => $p['modele']->prix, 'quantite' => $p['quantite']); // id produit mais il s'agit bien du modèle (lié au produit de toute façon)
             $this->_commandes->ajouterProduit($data2);

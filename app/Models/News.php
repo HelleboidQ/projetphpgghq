@@ -20,6 +20,13 @@ class News extends \Core\Model {
                                 WHERE id_univers = ' . $univers_id . ' ORDER BY id DESC LIMIT ' . $number);
     }
 
+    public function findAllLast($number) {
+        return $this->db->select('SELECT * 
+                                FROM news 
+                                ORDER BY id DESC LIMIT ' . $number);
+    }
+
+
     public function getNewsById($id) {
         return $this->db->select('SELECT * 
                                 FROM news 
