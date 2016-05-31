@@ -1,3 +1,5 @@
+
+
 <form method="POST" action="<?= URL; ?>news/create">
     <div class="modal-content">
         <h4>Ajouter une news</h4>
@@ -50,9 +52,9 @@
 <script> 
     $(document).ready(function () {
         $('select').material_select();
-        // CKEDITOR.replace('contenu');
+         CKEDITOR.replace('contenu');
 
-        var toolbar = [
+        /*var toolbar = [
             ['main', ['style']],
             ['style', ['bold', 'italic', 'underline', 'strikethroungh', 'superscript', 'subscript', 'clear']],
             ['para', ['ul', 'ol', 'paragraph']],
@@ -60,13 +62,15 @@
             ['misc', ['codeview', 'help']]
         ];
 
+       
         $('#contenu').materialnote({
             toolbar: toolbar,
             height: 550,
             minHeight: 100,
             defaultBackColor: '#e0e0e0',
-            callbacks: {
+            callbacks: {   
                 OnImageUpload: function (files, editor, welEditable) { 
+                    console.log("test");
                     data = new FormData();
                     data.append("img", files[0]);
                     $.ajax({
@@ -84,7 +88,7 @@
                 }
             }
         });
-
+        */
 
     });
 </script>

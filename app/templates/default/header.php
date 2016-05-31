@@ -28,7 +28,9 @@ $hooks = Hooks::get();
             URL . 'app/templates/default/css/style.css',
             URL . 'app/templates/default/css/materialNote.css',
             URL . 'app/templates/default/css/materialNote.css.map',
-            'https://fonts.googleapis.com/css?family=Montserrat:400,700'
+            'https://fonts.googleapis.com/css?family=Montserrat:400,700',
+            URL . 'app/templates/default/css/casseBrique.css',
+            URL . 'app/templates/default/css/sweetalert.css'
         ]);
 
         //hook for plugging in css
@@ -40,10 +42,13 @@ $hooks = Hooks::get();
             Url::templatePath() . 'js/jquery.js',
             Url::templatePath() . 'js/ckMaterializeOverrides.js',
             Url::templatePath() . 'js/materialNote.js',
-            Url::templatePath() . 'js/materialNote.min.js'
+            Url::templatePath() . 'js/materialNote.min.js',
+            'https://cdn.ckeditor.com/4.5.8/standard/ckeditor.js',
+            Url::templatePath() . 'js/cb.js',
+            Url::templatePath() . 'js/sweetalert.min.js'
         ]);
         ?>
-        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/Core/Config.php           ?></title>
+        <title><?php echo $data['title'] . ' - ' . SITETITLE; //SITETITLE defined in app/Core/Config.php             ?></title>
 
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
     </head>
