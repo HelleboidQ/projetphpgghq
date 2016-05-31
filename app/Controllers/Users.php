@@ -90,8 +90,6 @@ class Users extends Controller {
         // Supprimer des articles du panier
         foreach($panier as $p)
         {
-            var_dump($p);
-
             $data = array('id' => $p['id_panier']);
             $this->_panier->delete($data);
 
@@ -103,7 +101,7 @@ class Users extends Controller {
             $this->_commandes->ajouterProduit($data2);
         }
 
-
+        \Helpers\Url::redirect('welcome');
     }
 
 }

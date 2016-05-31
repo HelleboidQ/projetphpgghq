@@ -36,9 +36,13 @@ class Produits extends Controller {
         $recupId = explode("-", $id);
         $id = $recupId[0];
 
+        
+
         $produitDetail = $this->_produits->findById($id);
         $data['list'] = $produitDetail;
-
+        
+        $data['banner']['univers'] = $this->_univers->findById($data['list'][0]->id_univers);
+        
         $image = $this->_produits->findProduitImage($id);
         $data['image'] = $image;
 
@@ -48,7 +52,13 @@ class Produits extends Controller {
         $comDetail = $this->_commentaire->findByProduit($id);
         $data['com'] = $comDetail;
 
-        View::renderTemplate('header');
+        
+
+        
+        // Permet d'éviter d'utiliser le container tout de suite dans le header, pour afficher le fil d'ariane sur la totalité de la page
+        $data['settings']['dontShowContainer'] = 1;
+        View::renderTemplate('header',$data);
+        View::renderTemplate('banner-mini', $data);
         View::render('produits/detail', $data);
         View::renderTemplate('footer');
     }

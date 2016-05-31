@@ -21,7 +21,7 @@ if ($data['list'][0]->lien_ws != "") {
     <h1><?= $data['list'][0]->nom ?></h1>
     <div class="row">
         <div class="col s6"> 
-            <img class="materialboxed" src="<?= URL . 'app/views/' . $data['image'][0]->url;?>">
+            <img class="materialboxed responsive-img" src="<?= URL . 'app/views/' . $data['image'][0]->url;?>">
 
             Année : <?= $data['list'][0]->annee ?> 
             <br />
@@ -118,10 +118,8 @@ Laisser un avis
     $(".panier-add-submit").click(function(e){
         e.preventDefault();
         var modele = $(this).data('modele');
-        alert(modele);
 
         var qte = $(".panier-add[data-modele=" + modele + "]").val();
-        console.log(qte);
         var url = "<?= URL; ?>panier/add/";
         var posting = $.post( url, { qte: qte, mod:modele, id_user:"<?= $_SESSION['id']; ?>", prod:"<?= $data['list'][0]->id; ?>"});
         

@@ -2,10 +2,9 @@
   <div class="overlay">
     <h5><?= $data['banner']['univers'][0]->nom; ?></h5>
     <ul>
-    	<li><a href="#">Lien 1</a></li>
-    	<li><a href="#">Lien 2</a></li>
-    	<li><a href="#">Lien 3</a></li>
-    	<li><a href="#">Lien 4</a></li>
+    	<li><a href="<?= URL;?>accueil/index/<?= $data['banner']['univers'][0]->id;?>-<?= $data['banner']['univers'][0]->slug;?>">Accueil</a></li>
+    	<li><a href="<?= URL;?>news/index/<?= $data['banner']['univers'][0]->id;?>-<?= $data['banner']['univers'][0]->slug;?>">News</a></li>
+    	<li><a href="<?= URL;?>produits/index/<?= $data['banner']['univers'][0]->id;?>-<?= $data['banner']['univers'][0]->slug;?>">Produits</a></li>
     </ul>
   </div>
 </div>

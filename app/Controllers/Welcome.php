@@ -21,6 +21,7 @@ class Welcome extends Controller
     private $_news;
     private $_users;
     private $_produits;
+    private $_univers;
 
     /**
      * Call the parent construct.
@@ -33,6 +34,8 @@ class Welcome extends Controller
         $this->_news = new \Models\News();
         $this->_produits = new \Models\Produits();
         $this->_users = new \Models\Users();
+        $this->_univers = new \Models\Univers();
+
     }
 
     /**
@@ -44,6 +47,8 @@ class Welcome extends Controller
         $listeNews = array();
         foreach ($liste as $k => $l) {
             $listeNews[$k]['news'] = $l;
+            $listeNews[$k]['univers'] = $this->_univers->findById($l->id_univers);
+            $listeNews[$k]['univers'] = $listeNews[$k]['univers'][0];
             $listeNews[$k]['image'] = $this->_news->findNewsImage($l->id);
             $listeNews[$k]['image'] = $listeNews[$k]['image'][0];
             $listeNews[$k]['auteur'] = $this->_users->getUsersById($l->auteur);

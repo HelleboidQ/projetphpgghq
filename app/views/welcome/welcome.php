@@ -64,14 +64,14 @@ use Core\Language;
 	        <a href='/projetphpgghq/news/detail/<?= $data['news'][1]['news']->id . '-' . urlencode($data['news'][1]['news']->nom) ?>'>
 	            <div class="tile" style="background-image:url(<?= URL . 'app/views/' . $data['news'][1]['image']->url; ?>);">
 	                <div class="overlay">
-	                    <h5><?= $data['news'][1]['news']->nom; ?></h5>
+	                    <h5>[<?= $data['news'][1]['univers']->nom; ?>] <?= $data['news'][1]['news']->nom; ?></h5>
 	                </div>
 	            </div>
 	        </a>
 	        <a href='/projetphpgghq/news/detail/<?= $data['news'][2]['news']->id . '-' . urlencode($data['news'][2]['news']->nom) ?>'>
 	            <div class="tile" style="background-image:url(<?= URL . 'app/views/' . $data['news'][2]['image']->url; ?>);">
 	                <div class="overlay">
-	                    <h5><?= $data['news'][2]['news']->nom; ?></h5>
+	                    <h5>[<?= $data['news'][2]['univers']->nom; ?>] <?= $data['news'][2]['news']->nom; ?></h5>
 	                </div>
 	            </div>
 	        </a>
@@ -80,7 +80,7 @@ use Core\Language;
 	        <a href='/projetphpgghq/news/detail/<?= $data['news'][0]['news']->id . '-' . urlencode($data['news'][0]['news']->nom) ?>'>
 	            <div class="tile" style="background-image:url(<?= URL . 'app/views/' . $data['news'][0]['image']->url; ?>);">
 	                <div class="overlay">
-	                    <h5><?= $data['news'][0]['news']->nom; ?></h5>
+	                    <h5>[<?= $data['news'][0]['univers']->nom; ?>] <?= $data['news'][0]['news']->nom; ?></h5>
 	                </div>
 	            </div>
 	        </a>
@@ -89,14 +89,14 @@ use Core\Language;
 	        <a href='/projetphpgghq/news/detail/<?= $data['news'][3]['news']->id . '-' . urlencode($data['news'][3]['news']->nom) ?>'>
 	            <div class="tile" style="background-image:url(<?= URL . 'app/views/' . $data['news'][3]['image']->url; ?>);">
 	                <div class="overlay">
-	                    <h5><?= $data['news'][3]['news']->nom; ?></h5>
+	                    <h5>[<?= $data['news'][3]['univers']->nom; ?>] <?= $data['news'][3]['news']->nom; ?></h5>
 	                </div>
 	            </div>
 	        </a>
 	        <a href='/projetphpgghq/news/detail/<?= $data['news'][4]['news']->id . '-' . urlencode($data['news'][4]['news']->nom) ?>'>
 	            <div class="tile" style="background-image:url(<?= URL . 'app/views/' . $data['news'][4]['image']->url; ?>);">
 	                <div class="overlay">
-	                    <h5><?= $data['news'][4]['news']->nom; ?></h5>
+	                    <h5>[<?= $data['news'][4]['univers']->nom; ?>] <?= $data['news'][4]['news']->nom; ?></h5>
 	                </div>
 	            </div>
 	        </a>
